@@ -1,6 +1,6 @@
-namespace AmplifyNash.Models;
+namespace AmplifyNash.Models.DTOs;
 
-public class Venue
+public class VenueDTO 
 {
     public int Id { get; set; }
     public string Name { get; set; }
