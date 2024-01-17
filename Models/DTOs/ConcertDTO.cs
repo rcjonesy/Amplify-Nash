@@ -5,7 +5,7 @@ public class ConcertDTO
     public int Id { get; set; }
     public int VenueId { get; set; }
     public VenueDTO Venue { get; set; }
-    public List<BandDTO> Bands { get; set; }
+    public List<BandConcertDTO> BandConcerts { get; set; }
     public string Time { get; set; }
     public DateTime Date { get; set; }
     public int TicketsSold { get; set; }

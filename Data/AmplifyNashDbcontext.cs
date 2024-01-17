@@ -58,29 +58,29 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<Venue>().HasData(new Venue[]
         {
-            new Venue {Id = 1, Name = "Basement East", Address = "917 Woodland St, Nashville, TN 37206", PhoneNumber = "(615) 645-9174", Capacity = 150},
-            new Venue {Id = 2, Name = "3rd and Lindsley", Address = "818 3rd Ave S, Nashville, TN 37210", PhoneNumber = "(615) 259-9891", Capacity = 700},
-            new Venue {Id = 3, Name = "The High Watt", Address = "1 Cannery Row, Nashville, TN 37203", PhoneNumber = "(615) 251-3020", Capacity = 225},
-            new Venue {Id = 4, Name = "The Basement", Address = "1604 8th Ave S, Nashville, TN 37203", PhoneNumber = "(615) 254-8006", Capacity = 300},
-            new Venue {Id = 5, Name = "Exit/In", Address = "2208 Elliston Pl, Nashville, TN 37203", PhoneNumber = "(615) 321-3340", Capacity = 125},
-            new Venue {Id = 6, Name = "The East Room", Address = "2412 Gallatin Ave, Nashville, TN 37206", PhoneNumber = "(615) 335-3137", Capacity = 100},
-            new Venue {Id = 7, Name = "The Cobra Nashville", Address = "2511 Gallatin Ave, Nashville, TN 37206", PhoneNumber = "(615) 226-4875", Capacity = 350},
-            new Venue {Id = 8, Name = "The End", Address = "2219 Elliston Pl, Nashville, TN 37203", PhoneNumber = "(615) 321-4457", Capacity = 275},
-            new Venue {Id = 9, Name = "The Station Inn", Address = "402 12th Ave S, Nashville, TN 37203", PhoneNumber = "(615) 255-3307", Capacity = 145},
-            new Venue {Id = 10, Name = "Mercy Lounge", Address = "1 Cannery Row, Nashville, TN 37203", PhoneNumber = "(615) 251-3020", Capacity = 210}
+            new Venue {Id = 1, Name = "Basement East", Address = "917 Woodland St, Nashville, TN 37206", PhoneNumber = "(615) 645-9174", Capacity = 150, UserProfileId = 1},
+            new Venue {Id = 2, Name = "3rd and Lindsley", Address = "818 3rd Ave S, Nashville, TN 37210", PhoneNumber = "(615) 259-9891", Capacity = 700, UserProfileId = 1},
+            new Venue {Id = 3, Name = "The High Watt", Address = "1 Cannery Row, Nashville, TN 37203", PhoneNumber = "(615) 251-3020", Capacity = 225, UserProfileId = 1},
+            new Venue {Id = 4, Name = "The Basement", Address = "1604 8th Ave S, Nashville, TN 37203", PhoneNumber = "(615) 254-8006", Capacity = 300, UserProfileId = 1},
+            new Venue {Id = 5, Name = "Exit/In", Address = "2208 Elliston Pl, Nashville, TN 37203", PhoneNumber = "(615) 321-3340", Capacity = 125, UserProfileId = 1},
+            new Venue {Id = 6, Name = "The East Room", Address = "2412 Gallatin Ave, Nashville, TN 37206", PhoneNumber = "(615) 335-3137", Capacity = 100, UserProfileId = 1},
+            new Venue {Id = 7, Name = "The Cobra Nashville", Address = "2511 Gallatin Ave, Nashville, TN 37206", PhoneNumber = "(615) 226-4875", Capacity = 350, UserProfileId = 1},
+            new Venue {Id = 8, Name = "The End", Address = "2219 Elliston Pl, Nashville, TN 37203", PhoneNumber = "(615) 321-4457", Capacity = 275, UserProfileId = 1},
+            new Venue {Id = 9, Name = "The Station Inn", Address = "402 12th Ave S, Nashville, TN 37203", PhoneNumber = "(615) 255-3307", Capacity = 145, UserProfileId = 1},
+            new Venue {Id = 10, Name = "Mercy Lounge", Address = "1 Cannery Row, Nashville, TN 37203", PhoneNumber = "(615) 251-3020", Capacity = 210, UserProfileId = 1}
         });
         modelBuilder.Entity<Band>().HasData(new Band[]
         {
-            new Band { Id = 1, Name = "Lunar Essence", Bio = "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", Genre = "Indie Rock", IsHeadliner = true},
-            new Band { Id = 2, Name = "Sonic Catalyst", Bio = "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", Genre = "Rock", IsHeadliner = true},
-            new Band { Id = 3, Name = "Aurora Melodies", Bio = "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", Genre = "Indie Pop", IsHeadliner = true},
-            new Band { Id = 4, Name = "Rebel Resonance", Bio = "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", Genre = "Rock", IsHeadliner = true},
-            new Band { Id = 5, Name = "Whispering Echoes", Bio = "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", Genre = "Indie Rock", IsHeadliner = true},
-            new Band { Id = 6, Name = "Electric Hues", Bio = "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", Genre = "Indie Electro-Pop", IsHeadliner = false},
-            new Band { Id = 7, Name = "Urban Groove Collective", Bio = "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", Genre = "Funk/Soul/Jazz Fusion", IsHeadliner = false},
-            new Band { Id = 8, Name = "Neon Skylines", Bio = "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", Genre = "Alternative Rock", IsHeadliner = false},
-            new Band { Id = 9, Name = "Crimson Harmony", Bio = "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", Genre = "Indie/Soul/Jazz Fusion", IsHeadliner = false},
-            new Band { Id = 10, Name = "Mystic Soundwaves", Bio = "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", Genre = "Psychedelic Rock", IsHeadliner = false},
+            new Band { Id = 1, Name = "Lunar Essence", Bio = "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", Genre = "Indie Rock", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 2, Name = "Sonic Catalyst", Bio = "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", Genre = "Rock", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 3, Name = "Aurora Melodies", Bio = "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", Genre = "Indie Pop", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 4, Name = "Rebel Resonance", Bio = "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", Genre = "Rock", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 5, Name = "Whispering Echoes", Bio = "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", Genre = "Indie Rock", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 6, Name = "Electric Hues", Bio = "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", Genre = "Indie Electro-Pop", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 7, Name = "Urban Groove Collective", Bio = "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", Genre = "Funk/Soul/Jazz Fusion", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 8, Name = "Neon Skylines", Bio = "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", Genre = "Alternative Rock", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 9, Name = "Crimson Harmony", Bio = "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", Genre = "Indie/Soul/Jazz Fusion", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 10, Name = "Mystic Soundwaves", Bio = "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", Genre = "Psychedelic Rock", IsHeadliner = false, UserProfileId = 1},
       });
 
         modelBuilder.Entity<BandMember>().HasData(new BandMember[]

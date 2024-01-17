@@ -6,5 +6,5 @@ public class BandConcertDTO
     public int BandId { get; set; }
     public BandDTO Band { get; set; }
     public int ConcertId { get; set; }
-    public BandConcertDTO Concert { get; set; }
+    public ConcertDTO Concert { get; set; }
 }

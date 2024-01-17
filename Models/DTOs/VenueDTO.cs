@@ -7,6 +7,6 @@ public class VenueDTO
     public string Address { get; set; }
     public string PhoneNumber { get; set; }
     public int Capacity { get; set; }
-     public int UserProfileId { get; set; }
+    public int UserProfileId { get; set; }
     public UserProfileDTO UserProfile { get; set; }
 }
