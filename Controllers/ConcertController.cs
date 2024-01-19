@@ -121,6 +121,49 @@ public class ConcertController : ControllerBase
         return Ok(concertDTO);
     }
 
+    //=================================================================================================
+    //delete concert
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteConcert(int id)
+    {
+        Concert? concertToDelete = _dbContext.Concerts.SingleOrDefault(c => c.Id == id);
+
+        if (concertToDelete == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Concerts.Remove(concertToDelete);
+        _dbContext.SaveChanges();
+
+        return Ok("Concert deleted successfully");
+    }
+
+    //=================================================================================================
+    //update concert
+
+//   [HttpPut("{id}")]
+// public IActionResult UpdateConcert(int id, [FromBody] Concert updatedConcert)
+// {
+//     // Retrieve the existing concert from the database
+//     Concert? concertToUpdate = _dbContext.Concerts.SingleOrDefault(concert => concert.Id == id);
+
+//     if (concertToUpdate == null)
+//     {
+//         return NotFound();
+//     }
+
+//     // Update properties of the existing concert with values from updatedConcert
+//     concertToUpdate.Date = updatedConcert.Date;
+//     concertToUpdate.VenueId = updatedConcert.VenueId;
+//     
+
+//     // Save changes to the database
+//     _dbContext.SaveChanges();
+
+//     return Ok(concertToUpdate); // Return the updated concert or a success message
+// }
 
 
 }

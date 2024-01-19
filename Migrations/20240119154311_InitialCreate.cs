@@ -178,6 +178,28 @@ namespace AmplifyNash.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Bands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Bio = table.Column<string>(type: "text", nullable: false),
+                    Genre = table.Column<string>(type: "text", nullable: false),
+                    IsHeadliner = table.Column<bool>(type: "boolean", nullable: false),
+                    UserProfileId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bands_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Venues",
                 columns: table => new
                 {
@@ -187,7 +209,7 @@ namespace AmplifyNash.Migrations
                     Address = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     Capacity = table.Column<int>(type: "integer", nullable: false),
-                    UserProfileId = table.Column<int>(type: "integer", nullable: false)
+                    UserProfileId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,6 +218,26 @@ namespace AmplifyNash.Migrations
                         name: "FK_Venues_UserProfiles_UserProfileId",
                         column: x => x.UserProfileId,
                         principalTable: "UserProfiles",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BandMembers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Instrument = table.Column<string>(type: "text", nullable: false),
+                    BandId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BandMembers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BandMembers_Bands_BandId",
+                        column: x => x.BandId,
+                        principalTable: "Bands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -218,35 +260,6 @@ namespace AmplifyNash.Migrations
                         name: "FK_Concerts_Venues_VenueId",
                         column: x => x.VenueId,
                         principalTable: "Venues",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Bands",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Bio = table.Column<string>(type: "text", nullable: false),
-                    Genre = table.Column<string>(type: "text", nullable: false),
-                    IsHeadliner = table.Column<bool>(type: "boolean", nullable: false),
-                    UserProfileId = table.Column<int>(type: "integer", nullable: false),
-                    ConcertId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Bands", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Bands_Concerts_ConcertId",
-                        column: x => x.ConcertId,
-                        principalTable: "Concerts",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Bands_UserProfiles_UserProfileId",
-                        column: x => x.UserProfileId,
-                        principalTable: "UserProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -277,36 +290,15 @@ namespace AmplifyNash.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "BandMembers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Instrument = table.Column<string>(type: "text", nullable: false),
-                    BandId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BandMembers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BandMembers_Bands_BandId",
-                        column: x => x.BandId,
-                        principalTable: "Bands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "3b799082-5dea-40b2-b487-8c7acf3ae3d1", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "e73e6646-c603-464c-8d99-142b6325bac9", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "7b310907-f222-439f-b197-362bf3351b7f", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFHJNkS3mzzP8r74jEkVty0c2SIms9BxAaui3loyO6jesYkjeAB7GsM1yurk4w+qyQ==", null, false, "0642d602-0ba0-4ade-a774-34c163e42c6d", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "377b400e-e3bc-4143-ba2e-74bae579f7b0", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEB83CUx6C0A80KVjs3zPgBqef8sVqhg6iGHWAQZpZvIIIZjb5rjv81rDhMOQNiMmyw==", null, false, "ca395aa2-d09c-4856-9ead-5b1e905fc5ef", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -320,19 +312,19 @@ namespace AmplifyNash.Migrations
 
             migrationBuilder.InsertData(
                 table: "Bands",
-                columns: new[] { "Id", "Bio", "ConcertId", "Genre", "IsHeadliner", "Name", "UserProfileId" },
+                columns: new[] { "Id", "Bio", "Genre", "IsHeadliner", "Name", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", null, "Indie Rock", true, "Lunar Essence", 1 },
-                    { 2, "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", null, "Rock", true, "Sonic Catalyst", 1 },
-                    { 3, "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", null, "Indie Pop", true, "Aurora Melodies", 1 },
-                    { 4, "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", null, "Rock", true, "Rebel Resonance", 1 },
-                    { 5, "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", null, "Indie Rock", true, "Whispering Echoes", 1 },
-                    { 6, "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", null, "Indie Electro-Pop", false, "Electric Hues", 1 },
-                    { 7, "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", null, "Funk/Soul/Jazz Fusion", false, "Urban Groove Collective", 1 },
-                    { 8, "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", null, "Alternative Rock", false, "Neon Skylines", 1 },
-                    { 9, "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", null, "Indie/Soul/Jazz Fusion", false, "Crimson Harmony", 1 },
-                    { 10, "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", null, "Psychedelic Rock", false, "Mystic Soundwaves", 1 }
+                    { 1, "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", "Indie Rock", true, "Lunar Essence", 1 },
+                    { 2, "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", "Rock", true, "Sonic Catalyst", 1 },
+                    { 3, "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", "Indie Pop", true, "Aurora Melodies", 1 },
+                    { 4, "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", "Rock", true, "Rebel Resonance", 1 },
+                    { 5, "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", "Indie Rock", true, "Whispering Echoes", 1 },
+                    { 6, "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", "Indie Electro-Pop", false, "Electric Hues", 1 },
+                    { 7, "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", "Funk/Soul/Jazz Fusion", false, "Urban Groove Collective", 1 },
+                    { 8, "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", "Alternative Rock", false, "Neon Skylines", 1 },
+                    { 9, "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", "Indie/Soul/Jazz Fusion", false, "Crimson Harmony", 1 },
+                    { 10, "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", "Psychedelic Rock", false, "Mystic Soundwaves", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -504,11 +496,6 @@ namespace AmplifyNash.Migrations
                 column: "BandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bands_ConcertId",
-                table: "Bands",
-                column: "ConcertId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Bands_UserProfileId",
                 table: "Bands",
                 column: "UserProfileId");
@@ -556,10 +543,10 @@ namespace AmplifyNash.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Bands");
+                name: "Concerts");
 
             migrationBuilder.DropTable(
-                name: "Concerts");
+                name: "Bands");
 
             migrationBuilder.DropTable(
                 name: "Venues");

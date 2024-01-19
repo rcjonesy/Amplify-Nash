@@ -34,9 +34,6 @@ namespace AmplifyNash.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ConcertId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("text");
@@ -48,12 +45,10 @@ namespace AmplifyNash.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserProfileId")
+                    b.Property<int?>("UserProfileId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ConcertId");
 
                     b.HasIndex("UserProfileId");
 
@@ -827,7 +822,7 @@ namespace AmplifyNash.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserProfileId")
+                    b.Property<int?>("UserProfileId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -958,7 +953,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "3b799082-5dea-40b2-b487-8c7acf3ae3d1",
+                            ConcurrencyStamp = "e73e6646-c603-464c-8d99-142b6325bac9",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1057,13 +1052,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b310907-f222-439f-b197-362bf3351b7f",
+                            ConcurrencyStamp = "377b400e-e3bc-4143-ba2e-74bae579f7b0",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEFHJNkS3mzzP8r74jEkVty0c2SIms9BxAaui3loyO6jesYkjeAB7GsM1yurk4w+qyQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB83CUx6C0A80KVjs3zPgBqef8sVqhg6iGHWAQZpZvIIIZjb5rjv81rDhMOQNiMmyw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0642d602-0ba0-4ade-a774-34c163e42c6d",
+                            SecurityStamp = "ca395aa2-d09c-4856-9ead-5b1e905fc5ef",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -1159,15 +1154,9 @@ namespace AmplifyNash.Migrations
 
             modelBuilder.Entity("AmplifyNash.Models.Band", b =>
                 {
-                    b.HasOne("AmplifyNash.Models.Concert", null)
-                        .WithMany("Bands")
-                        .HasForeignKey("ConcertId");
-
                     b.HasOne("AmplifyNash.Models.UserProfile", "UserProfile")
                         .WithMany()
-                        .HasForeignKey("UserProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserProfileId");
 
                     b.Navigation("UserProfile");
                 });
@@ -1181,7 +1170,7 @@ namespace AmplifyNash.Migrations
                         .IsRequired();
 
                     b.HasOne("AmplifyNash.Models.Concert", "Concert")
-                        .WithMany()
+                        .WithMany("BandConcerts")
                         .HasForeignKey("ConcertId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1226,9 +1215,7 @@ namespace AmplifyNash.Migrations
                 {
                     b.HasOne("AmplifyNash.Models.UserProfile", "UserProfile")
                         .WithMany()
-                        .HasForeignKey("UserProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserProfileId");
 
                     b.Navigation("UserProfile");
                 });
@@ -1291,7 +1278,7 @@ namespace AmplifyNash.Migrations
 
             modelBuilder.Entity("AmplifyNash.Models.Concert", b =>
                 {
-                    b.Navigation("Bands");
+                    b.Navigation("BandConcerts");
                 });
 #pragma warning restore 612, 618
         }

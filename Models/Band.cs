@@ -8,6 +8,6 @@ public class Band
     public string Genre { get; set; }
     public bool IsHeadliner { get; set; }
     public List<BandMember> BandMembers { get; set; }
-    public int UserProfileId { get; set; }
-    public UserProfile UserProfile { get; set; }
+    public int? UserProfileId { get; set; }
+    public UserProfile? UserProfile { get; set; }
 }

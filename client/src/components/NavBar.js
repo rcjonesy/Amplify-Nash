@@ -20,31 +20,37 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     return (
         <div>
             <Navbar color="light" light fixed="true" expand="lg">
-                <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
+                <NavbarBrand tag={RRNavLink} to="/">
                     Amplify Nash
                 </NavbarBrand>
+
                 {loggedInUser ? (
                     <>
                         <NavbarToggler onClick={toggleNavbar} />
                         <Collapse isOpen={open} navbar>
-                            <Nav navbar></Nav>
+                            <Nav className="mr-auto" navbar>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/venues">
+                                        Venues
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                            <Button
+                                color="primary"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    logout().then(() => {
+                                        setLoggedInUser(null);
+                                        setOpen(false);
+                                    });
+                                }}
+                            >
+                                Logout
+                            </Button>
                         </Collapse>
-                        <Button
-                            color="primary"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setOpen(false);
-                                logout().then(() => {
-                                    setLoggedInUser(null);
-                                    setOpen(false);
-                                });
-                            }}
-                        >
-                            Logout
-                        </Button>
                     </>
                 ) : (
-                    <Nav navbar>
+                    <Nav className="ml-auto" navbar>
                         <NavItem>
                             <NavLink tag={RRNavLink} to="/login">
                                 <Button color="primary">Login</Button>
