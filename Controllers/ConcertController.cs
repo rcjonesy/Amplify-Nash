@@ -141,29 +141,19 @@ public class ConcertController : ControllerBase
     }
 
     //=================================================================================================
-    //update concert
+    //new concert
 
-//   [HttpPut("{id}")]
-// public IActionResult UpdateConcert(int id, [FromBody] Concert updatedConcert)
-// {
-//     // Retrieve the existing concert from the database
-//     Concert? concertToUpdate = _dbContext.Concerts.SingleOrDefault(concert => concert.Id == id);
+    [HttpPost]
+    // [Authorize]
 
-//     if (concertToUpdate == null)
-//     {
-//         return NotFound();
-//     }
+    public IActionResult NewConcert(Concert newConcert)
+    {
 
-//     // Update properties of the existing concert with values from updatedConcert
-//     concertToUpdate.Date = updatedConcert.Date;
-//     concertToUpdate.VenueId = updatedConcert.VenueId;
-//     
-
-//     // Save changes to the database
-//     _dbContext.SaveChanges();
-
-//     return Ok(concertToUpdate); // Return the updated concert or a success message
-// }
+        
+        _dbContext.Concerts.Add(newConcert);
+        _dbContext.SaveChanges();
+        return Created($"/api/concert/{newConcert.Id}", newConcert);
+    }
 
 
 }

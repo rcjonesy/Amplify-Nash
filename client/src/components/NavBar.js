@@ -19,7 +19,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
     return (
         <div>
-            <Navbar color="light" light fixed="true" expand="lg">
+            <Navbar  light fixed="true" expand="lg">
                 <NavbarBrand tag={RRNavLink} to="/">
                     Amplify Nash
                 </NavbarBrand>
@@ -31,7 +31,17 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                             <Nav className="mr-auto" navbar>
                                 <NavItem>
                                     <NavLink tag={RRNavLink} to="/venues">
-                                        Venues
+                                        Venue Info
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/newconcert">
+                                        Book Concert
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/bands">
+                                        Band Roster
                                     </NavLink>
                                 </NavItem>
                             </Nav>

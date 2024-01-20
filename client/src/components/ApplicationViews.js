@@ -5,7 +5,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { ConcertUpdate } from "./Concert/ConcertUpdate";
 import { VenueList } from "./Venues/VenueList";
-import { AddVenue } from "./Venues/AddVenue";
+import { BookConcert } from "./Concert/BookConcert";
 
 
 
@@ -48,10 +48,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           }
         />
         <Route
-          path="/addvenue"
+          path="/newconcert"
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
-              <AddVenue />
+              <BookConcert />
             </AuthorizedRoute>
           }
         />

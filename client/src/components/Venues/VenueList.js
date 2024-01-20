@@ -32,7 +32,7 @@ export const VenueList = () => {
 
 
     return (
-        <div className="min-h-screen bg-slate-400 p-4 flex flex-col items-center">
+        <div className="min-h-screen bg-black p-4 flex flex-col items-center">
             <div className="flex justify-around w-full mt-10">
                 <div className="w-1/2 max-w-screen-lg overflow-x-auto mr-4 mt-4">
                 <table className="w-full text-base text-left text-gray-500 bg-slate-600 rounded-sm outline border-t shadow-md border-transparent">

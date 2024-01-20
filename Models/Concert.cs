@@ -4,8 +4,8 @@ public class Concert
 {
     public int Id { get; set; }
     public int VenueId { get; set; }
-    public Venue Venue { get; set; }
-    public List<BandConcert> BandConcerts { get; set; }
+    public Venue? Venue { get; set; }
+    public List<BandConcert>? BandConcerts { get; set; }
     public string Time { get; set; }
     public DateTime Date { get; set; }
     public int TicketsSold { get; set; }

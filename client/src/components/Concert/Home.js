@@ -1,6 +1,8 @@
 import { getAllConcerts, deleteConcert } from "../../managers/ConcertManager"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Button } from "reactstrap"
+
 
 
 
@@ -29,13 +31,16 @@ export const Home = () => {
 
 
     return (
-        <div className="flex flex-wrap justify-center items-start min-h-screen">
+        <div className="flex flex-wrap justify-center items-start min-h-screen bg-black">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
-                <table className="w-full text-base text-left rtl:text-right text-gray-500 bg-slate-600">
-                    <thead className="text-lg text-gray-700 uppercase bg-gray-50">
+                <table className="w-full text-base text-left rtl:text-right text-gray-500 bg-slate-200">
+                    <thead className="text-lg text-gray-700 uppercase bg-slate-200">
                         <tr>
                             <th scope="col" className="px-6 py-2">
                                 Date
+                            </th>
+                            <th scope="col" className="px-6 py-2">
+                                Time
                             </th>
                             <th scope="col" className="px-6 py-2">
                                 Venue
@@ -53,23 +58,26 @@ export const Home = () => {
                                 Tickets Available
                             </th>
                             <th scope="col" className="px-6 py-2">
-                                Make Changes
+                                
                             </th>
                             <th scope="col" className="px-6 py-2">
-                                Cancel Event
+                                
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {concerts &&
                             concerts.map((concert, index) => (
-                                <tr key={concert.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100 border-b hover:bg-gray-50'}>
+                                <tr key={concert.id} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-200 border-b hover:bg-slate-100'}>
                                     <td className="px-6 py-4">
                                         {new Date(concert.date).toLocaleDateString("en-US", {
                                             year: "numeric",
                                             month: "numeric",
                                             day: "numeric",
                                         })}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {concert.time} PM
                                     </td>
                                     <td className="px-6 py-4">{concert.venue.name}</td>
                                     <td className="px-6 py-4">
@@ -91,18 +99,18 @@ export const Home = () => {
                                         {concert.ticketsAvailable}
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded"
+                                        <Button color="primary"
                                             onClick={() => handleMakeChangeClick(concert.id)}
                                         >
                                             Make Changes
-                                        </button>
+                                        </Button>
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
+                                        <Button color="danger"
                                             onClick={() => handleDeleteConcert(concert.id)}
                                         >
                                             Cancel
-                                        </button>
+                                        </Button>
                                     </td>
                                 </tr>
                             ))}

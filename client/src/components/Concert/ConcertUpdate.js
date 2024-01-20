@@ -49,6 +49,7 @@ export const ConcertUpdate = () => {
     }
 
     const handleChosenDate = (event) => {
+        console.log(event.target.value)
         setNewConcert({ ...newConcert, date: event.target.value })
     }
 
@@ -93,6 +94,7 @@ export const ConcertUpdate = () => {
     }, [])
 
     const formatDate = (dateString) => {
+        
         const date = new Date(dateString);
         const year = date.getFullYear();
         let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits for month
