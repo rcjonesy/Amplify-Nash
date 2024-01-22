@@ -31,14 +31,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             </AuthorizedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/concert/:id"
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <ConcertUpdate />
             </AuthorizedRoute>
           }
-        />
+        /> */}
         <Route
           path="/venues"
           element={

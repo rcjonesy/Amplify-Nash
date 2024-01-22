@@ -1,198 +1,226 @@
-import { getConcertById } from "../../managers/ConcertManager"
+import { getConcertById, updateConcert } from "../../managers/ConcertManager"
 import { getHeadliningBands, getSupportingBands } from "../../managers/BandManager"
 import { getAllVenues } from "../../managers/VenueManager"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { Form, FormGroup, Label, Input, Button, Col, FormText } from 'reactstrap';
+import { useNavigate } from "react-router-dom"
+
 
 
 
 export const ConcertUpdate = () => {
 
+
     const { id } = useParams()
-    const userId = id * 1
+    const concertId = id
 
-
+    const navigate = useNavigate()
 
     const [concert, setConcert] = useState({})
-    const [headliners, setHeadliners] = useState([])
-    const [supporting, setSupporting] = useState([])
     const [venues, setVenues] = useState([])
-    const [newConcert, setNewConcert] = useState({});
-    const [newHeadliner, setNewHeadliner] = useState({})
-    const [newSupporting, setNewSupporting] = useState([])
+    const [headliningBands, setHeadliningBands] = useState([])
+    const [supportingBands, setSupportingBands] = useState([])
 
-    //splitting up headlining band and split up supporting bands into 2 different states
 
-    const handleGetConcert = (id) => {
-        getConcertById(id).then((data) => {
-            setConcert(data)
-            setNewConcert(data)
-            const headliner = data.bandConcerts.find((bc) => bc.band.isHeadliner === true).bandId
-            const supportingBands = data.bandConcerts.filter((bc) => bc.band.isHeadliner === false)
+    //===========================================================================
 
-            setNewHeadliner({ bandId: headliner })
-            setNewSupporting(supportingBands)
-        })
-    }
-
-    const handleGetHeadliners = () => {
-        getHeadliningBands().then(setHeadliners)
-    }
-
-    const handleGetSupporting = () => {
-        getSupportingBands().then(setSupporting)
+    const handleGetincomingConcert = (id) => {
+        getConcertById(id).then(setConcert)
     }
 
     const handleGetVenues = () => {
         getAllVenues().then(setVenues)
     }
 
-    const handleChosenDate = (event) => {
-        console.log(event.target.value)
-        setNewConcert({ ...newConcert, date: event.target.value })
+    const handleHeadliners = () => {
+        getHeadliningBands().then(setHeadliningBands)
     }
 
-    const handleChosenVenue = (event) => {
-        setNewConcert({ ...newConcert, venueId: event.target.value })
+    const handleSupportingCheck = () => {
+        getSupportingBands().then(setSupportingBands)
     }
-
-    const handleChosenHeadliner = (event) => {
-        setNewHeadliner({ bandId: event.target.value })
-        const copy = { ...newConcert }
-        copy.bandConcerts = copy.bandConcerts.filter((bc) => bc.band.isHeadliner !== true)
-        copy.bandConcerts.push({ bandId: event.target.value * 1 })
-        setNewConcert(copy)
-    }
-
-
-    const handleChosenSupporting = (event) => {
-
-        if (event.target.checked) {
-
-            const copy = [...newSupporting]
-            copy.push({ bandId: event.target.value * 1 })
-            setNewSupporting(copy)
-
-        } else {
-            const copy = newSupporting.filter((ns) => ns.bandId !== event.target.value * 1)
-            setNewSupporting(copy)
-        }
-
-    }
-
-    //check if box is checked or not
-    //if it's checked remove checked band from array
-    //if it's not checked add the checked band to the array
-
 
     useEffect(() => {
-        handleGetConcert(userId)
-        handleGetHeadliners()
-        handleGetSupporting()
+        handleGetincomingConcert(concertId)
         handleGetVenues()
+        handleHeadliners()
+        handleSupportingCheck()
     }, [])
 
-    const formatDate = (dateString) => {
-        
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits for month
-        let day = date.getDate().toString().padStart(2, '0'); // Ensure two digits for day
+    //=========================================================================re 
+    //On Change functions
 
-        return `${year}-${month}-${day}`;
+    const handleDate = (event) => {
+        setConcert({ ...concert, date: event.target.value })
+    }
+
+    const handleTime = (event) => {
+        setConcert({ ...concert, time: event.target.value })
+    }
+
+    const handleVenue = (event) => {
+        setConcert({ ...concert, venueId: event.target.value })
+    }
+
+    const handleHeadliner = (event) => {
+        const selectedHeadlinerId = event.target.value *1;
+
+        // Find the bandConcert corresponding to the current headliner
+        const currentHeadlinerBandObj = concert?.bandConcerts?.find(bc => bc.band.isHeadliner === true);
+
+        if (currentHeadlinerBandObj.bandId !== selectedHeadlinerId) {
+            // Update the bandId of the current headliner directly
+            currentHeadlinerBandObj.bandId = selectedHeadlinerId;
+
+            // Update the concert state with the modified bandConcerts array
+            setConcert({ ...concert, bandConcerts: [...concert.bandConcerts] });
+        }
     };
 
+    const handleCheckboxes = (event) => {
+        // Extracting bandId and isChecked from the event
+        const bandId = event.target.value;
+        const isChecked = event.target.checked; //true or false
+
+
+        setConcert((currentConcert) => {
+            // If the checkbox is checked, add a new band concert with the specified bandId
+            const updatedBandConcerts = isChecked
+                ? [...currentConcert.bandConcerts, { bandId: bandId * 1 }]
+                // If the checkbox is unchecked, remove the band concert with the specified bandId
+                //instead of "removing" it you are just creating an array without it
+                : currentConcert.bandConcerts.filter((bandConcert) => bandConcert.bandId !== bandId * 1);
+
+            // Returning the updated state
+            return {
+                ...currentConcert,
+                bandConcerts: updatedBandConcerts,
+            };
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // console.log(concert)
+        const copy = {...concert}
+        copy.bandConcerts = copy.bandConcerts.map((bandConcert) => {
+            return {
+                bandId: bandConcert.bandId
+            }
+        })
+        updateConcert(concert.id, copy)
+    };
+    
+
+
+
+
+
+
+    //===========================================================================
 
 
 
     return (
-        <Form className="max-w-2xl mx-auto mt-8 p-6 bg-gray-200 shadow-md rounded">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Update Concert</h2>
 
-            <div className="mb-4">
-                <Label for="datePicker" className="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Date
-                </Label>
-                <Input
-                    type="date"
-                    id="datePicker"
-                    value={newConcert?.date || formatDate(concert.date)}
-                    className="p-3 border rounded w-full"
-                    onChange={handleChosenDate}
-                />
-            </div>
+            <div className="min-h-screen">
+                <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
+                    <h2 className="text-2xl font-semibold mb-6">Update Concert</h2>
+                    <form className="mt-10">
 
-            <div className="mb-4">
-                <Label for="venueSelect" className="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Venue
-                </Label>
-                <Input
-                    id="venueSelect"
-                    type="select"
-                    value={newConcert.venueId || (concert && concert.venue && concert.venue.id)}
-                    className="p-3 border rounded w-full"
-                    onChange={handleChosenVenue}
-                >
-                    <option value="">Select a venue</option>
-                    {venues && venues.map((venue) => (
-                        <option key={venue.id} value={venue.id}>
-                            {venue.name}
-                        </option>
-                    ))}
-                </Input>
-            </div>
-
-            <div className="mb-4">
-                <Label for="headlinerSelect" className="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Headliner
-                </Label>
-                <Input
-                    id="headlinerSelect"
-                    type="select"
-                    value={(newConcert.bandConcerts && newConcert.bandConcerts.length > 0)
-                        ? newConcert.bandConcerts[0].bandId
-                        : (concert && concert.bandConcerts?.find(bc => bc.band.isHeadliner === true)?.band?.id) || ""}
-                    className="p-3 border rounded w-full"
-                    onChange={handleChosenHeadliner}
-                >
-                    <option value="">Select a headliner</option>
-                    {headliners && headliners.map((headliner) => (
-                        <option key={headliner?.id} value={headliner.id}>
-                            {headliner.name}
-                        </option>
-                    ))}
-                </Input>
-            </div>
-
-            <div className="mb-4">
-                <Label className="block text-lg font-semibold text-gray-700 mb-2">
-                    Select Supporting Bands
-                </Label>
-                <div className="flex flex-col space-y-2">
-                    {supporting && supporting.map((band) => (
-                        <div key={band.id} className="flex items-center">
-                            <Input
-                                id={`checkbox-${band.id}`}
-                                type="checkbox"
-                                className="mr-2"
-                                defaultChecked={concert && concert.bandConcerts?.some(bc => bc.bandId === band.id)}
-                                onChange={handleChosenSupporting}
-                                value={`${band.id}`}
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Date</label>
+                            <input
+                                type="date"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                placeholder="Select Date"
+                                value={concert?.date ? concert.date.split('T')[0] : ''}
+                                onChange={handleDate}
                             />
-                            <Label check htmlFor={`checkbox-${band.id}`} className="text-gray-700">
-                                {band.name}
-                            </Label>
                         </div>
-                    ))}
+
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Time</label>
+                            <input
+                                type="text"
+                                name="time"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                placeholder="Enter Time"
+                                value={concert?.time}
+                                onChange={handleTime}
+                            />
+                        </div>
+
+                        {/* Venue Select */}
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Venue</label>
+                            <select
+                                name="venue"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                placeholder="Select Venue"
+                                value={concert?.venue?.id || ''}
+                                onChange={handleVenue}
+                            >
+                                {venues.map((venue) => (
+                                    <option key={venue.id} value={venue.id}>
+                                        {venue.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+
+                        {/* Headlining Band Select */}
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Headlining Band</label>
+                            <select
+                                name="headliningBand"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                placeholder="Select Headlining Band"
+                                value={concert?.bandConcerts?.find(bc => bc.band.isHeadliner)?.bandId}
+                                onChange={handleHeadliner}
+
+                            >
+                                {headliningBands.map((headliner) => (
+                                    <option key={headliner.id} value={headliner.id}>
+                                        {headliner.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+
+                        {/* Supporting Bands Checkboxes */}
+                        <div className="mb-4">
+                            <label className="block text-gray-600">Supporting Bands</label>
+                            <div>
+                                {supportingBands.map((supportingBand) => (
+                                    <label key={supportingBand.id} className="flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            name="supportingsupportingBands"
+                                            value={supportingBand.id}
+                                            className="mr-2"
+                                            checked={concert?.bandConcerts?.some(bc => bc.bandId === supportingBand.id)}
+                                            onChange={handleCheckboxes}
+                                        />
+                                        {supportingBand.name}
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                    </form>
                 </div>
             </div>
+        );
 
-            <div className="mb-4">
-                <Button className="bg-gray-700 text-white p-3 rounded hover:bg-gray-800 transition duration-300">
-                    Submit
-                </Button>
-            </div>
-        </Form>
-    );
-}
+    }

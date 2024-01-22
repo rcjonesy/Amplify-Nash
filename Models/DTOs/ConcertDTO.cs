@@ -8,8 +8,8 @@ public class ConcertDTO
     public List<BandConcertDTO> BandConcerts { get; set; }
     public string Time { get; set; }
     public DateTime Date { get; set; }
-    public int TicketsSold { get; set; }
-   public int TicketsAvailable
+    public int? TicketsSold { get; set; }
+   public int? TicketsAvailable
     {
         get
         {

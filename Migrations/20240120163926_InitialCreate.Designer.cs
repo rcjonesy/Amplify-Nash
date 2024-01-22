@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AmplifyNash.Migrations
 {
     [DbContext(typeof(AmplifyNashDbContext))]
-    [Migration("20240119154311_InitialCreate")]
+    [Migration("20240120163926_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -661,7 +661,7 @@ namespace AmplifyNash.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("TicketsSold")
+                    b.Property<int?>("TicketsSold")
                         .HasColumnType("integer");
 
                     b.Property<string>("Time")
@@ -682,80 +682,70 @@ namespace AmplifyNash.Migrations
                         {
                             Id = 1,
                             Date = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 120,
-                            Time = "7:00 PM",
+                            Time = "7:00",
                             VenueId = 1
                         },
                         new
                         {
                             Id = 2,
                             Date = new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 110,
-                            Time = "8:30 PM",
+                            Time = "8:30",
                             VenueId = 2
                         },
                         new
                         {
                             Id = 3,
                             Date = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 105,
-                            Time = "6:45 PM",
+                            Time = "6:45",
                             VenueId = 3
                         },
                         new
                         {
                             Id = 4,
                             Date = new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 100,
-                            Time = "9:15 PM",
+                            Time = "9:15",
                             VenueId = 4
                         },
                         new
                         {
                             Id = 5,
                             Date = new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 120,
-                            Time = "7:30 PM",
+                            Time = "7:30",
                             VenueId = 5
                         },
                         new
                         {
                             Id = 6,
                             Date = new DateTime(2024, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 110,
-                            Time = "8:00 PM",
+                            Time = "8:00",
                             VenueId = 1
                         },
                         new
                         {
                             Id = 7,
                             Date = new DateTime(2024, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 105,
-                            Time = "6:15 PM",
+                            Time = "6:15",
                             VenueId = 2
                         },
                         new
                         {
                             Id = 8,
                             Date = new DateTime(2024, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 100,
-                            Time = "9:45 PM",
+                            Time = "9:45",
                             VenueId = 3
                         },
                         new
                         {
                             Id = 9,
                             Date = new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 120,
-                            Time = "7:45 PM",
+                            Time = "7:45",
                             VenueId = 4
                         },
                         new
                         {
                             Id = 10,
                             Date = new DateTime(2024, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TicketsSold = 110,
-                            Time = "8:15 PM",
+                            Time = "8:15",
                             VenueId = 5
                         });
                 });
@@ -955,7 +945,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "e73e6646-c603-464c-8d99-142b6325bac9",
+                            ConcurrencyStamp = "8758f415-39ca-40fa-83e9-cbcec642ee70",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1054,13 +1044,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "377b400e-e3bc-4143-ba2e-74bae579f7b0",
+                            ConcurrencyStamp = "e9a48bc6-84f9-47fd-9d42-201af76e8484",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEB83CUx6C0A80KVjs3zPgBqef8sVqhg6iGHWAQZpZvIIIZjb5rjv81rDhMOQNiMmyw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFIcNIKbvTGqzyRpUuu18It8TQ5iONXmdrCEkCh3Jus0Bq338zQn4nfQs6dPbUKf9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ca395aa2-d09c-4856-9ead-5b1e905fc5ef",
+                            SecurityStamp = "2eeda9ba-7e40-4776-8fcd-4320c28c5448",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });

@@ -8,9 +8,9 @@ public class Concert
     public List<BandConcert>? BandConcerts { get; set; }
     public string Time { get; set; }
     public DateTime Date { get; set; }
-    public int TicketsSold { get; set; }
+    public int? TicketsSold { get; set; }
 
-    public int TicketsAvailable
+    public int? TicketsAvailable
     {
         get
         {

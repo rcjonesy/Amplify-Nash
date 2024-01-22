@@ -36,32 +36,25 @@ export const Home = () => {
                 <table className="w-full text-base text-left rtl:text-right text-gray-500 bg-slate-200">
                     <thead className="text-lg text-gray-700 uppercase bg-slate-200">
                         <tr>
-                            <th scope="col" className="px-6 py-2">
+                            <th scope="col" className="px-10 py-8">
                                 Date
                             </th>
-                            <th scope="col" className="px-6 py-2">
+                            <th scope="col" className="px-10 py-8">
                                 Time
                             </th>
-                            <th scope="col" className="px-6 py-2">
+                            <th scope="col" className="px-10 py-8">
                                 Venue
                             </th>
-                            <th scope="col" className="px-6 py-2">
+                            <th scope="col" className="px-10 py-8">
                                 Headlining Artist
                             </th>
-                            <th scope="col" className="px-6 py-2">
+                            <th scope="col" className="px-10 py-8">
                                 Supporting Artist(s)
                             </th>
-                            <th scope="col" className="px-6 py-2">
-                                Tickets Sold
+                            <th scope="col" className="px-10 py-8">
                             </th>
-                            <th scope="col" className="px-6 py-2">
-                                Tickets Available
-                            </th>
-                            <th scope="col" className="px-6 py-2">
-                                
-                            </th>
-                            <th scope="col" className="px-6 py-2">
-                                
+                            <th scope="col" className="px-10 py-8">
+
                             </th>
                         </tr>
                     </thead>
@@ -69,43 +62,37 @@ export const Home = () => {
                         {concerts &&
                             concerts.map((concert, index) => (
                                 <tr key={concert.id} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-200 border-b hover:bg-slate-100'}>
-                                    <td className="px-6 py-4">
+                                    <td className="px-10 py-8">
                                         {new Date(concert.date).toLocaleDateString("en-US", {
                                             year: "numeric",
                                             month: "numeric",
                                             day: "numeric",
                                         })}
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-10 py-8">
                                         {concert.time} PM
                                     </td>
-                                    <td className="px-6 py-4">{concert.venue.name}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-10 py-8">{concert.venue.name}</td>
+                                    <td className="px-10 py-8">
                                         {concert.bandConcerts.find((bc) => bc.band.isHeadliner === true)?.band.name || "No headlining band"}
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <ul>
+                                    <td className="px-10 py-8">
+                                        <ul className="mt-3 pl-0 list-none">
                                             {concert.bandConcerts.map((bc) => (
-                                                <li key={bc.band.id}>
+                                                <li key={bc.band.id} className="flex items-start">
                                                     {bc.band.isHeadliner === false ? bc.band.name : null}
                                                 </li>
                                             ))}
                                         </ul>
                                     </td>
-                                    <td className="text-center">
-                                        {concert.ticketsSold}
-                                    </td>
-                                    <td className="text-center">
-                                        {concert.ticketsAvailable}
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-10 py-8 text-right">
                                         <Button color="primary"
                                             onClick={() => handleMakeChangeClick(concert.id)}
                                         >
                                             Make Changes
                                         </Button>
                                     </td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-10 py-8 text-right">
                                         <Button color="danger"
                                             onClick={() => handleDeleteConcert(concert.id)}
                                         >

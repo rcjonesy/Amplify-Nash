@@ -251,7 +251,7 @@ namespace AmplifyNash.Migrations
                     VenueId = table.Column<int>(type: "integer", nullable: false),
                     Time = table.Column<string>(type: "text", nullable: false),
                     Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    TicketsSold = table.Column<int>(type: "integer", nullable: false)
+                    TicketsSold = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -293,12 +293,12 @@ namespace AmplifyNash.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "e73e6646-c603-464c-8d99-142b6325bac9", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "8758f415-39ca-40fa-83e9-cbcec642ee70", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "377b400e-e3bc-4143-ba2e-74bae579f7b0", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEB83CUx6C0A80KVjs3zPgBqef8sVqhg6iGHWAQZpZvIIIZjb5rjv81rDhMOQNiMmyw==", null, false, "ca395aa2-d09c-4856-9ead-5b1e905fc5ef", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "e9a48bc6-84f9-47fd-9d42-201af76e8484", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFIcNIKbvTGqzyRpUuu18It8TQ5iONXmdrCEkCh3Jus0Bq338zQn4nfQs6dPbUKf9g==", null, false, "2eeda9ba-7e40-4776-8fcd-4320c28c5448", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -396,16 +396,16 @@ namespace AmplifyNash.Migrations
                 columns: new[] { "Id", "Date", "TicketsSold", "Time", "VenueId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 120, "7:00 PM", 1 },
-                    { 2, new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 110, "8:30 PM", 2 },
-                    { 3, new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 105, "6:45 PM", 3 },
-                    { 4, new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, "9:15 PM", 4 },
-                    { 5, new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 120, "7:30 PM", 5 },
-                    { 6, new DateTime(2024, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 110, "8:00 PM", 1 },
-                    { 7, new DateTime(2024, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 105, "6:15 PM", 2 },
-                    { 8, new DateTime(2024, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 100, "9:45 PM", 3 },
-                    { 9, new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 120, "7:45 PM", 4 },
-                    { 10, new DateTime(2024, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 110, "8:15 PM", 5 }
+                    { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "7:00", 1 },
+                    { 2, new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "8:30", 2 },
+                    { 3, new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "6:45", 3 },
+                    { 4, new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "9:15", 4 },
+                    { 5, new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "7:30", 5 },
+                    { 6, new DateTime(2024, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "8:00", 1 },
+                    { 7, new DateTime(2024, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "6:15", 2 },
+                    { 8, new DateTime(2024, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "9:45", 3 },
+                    { 9, new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "7:45", 4 },
+                    { 10, new DateTime(2024, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "8:15", 5 }
                 });
 
             migrationBuilder.InsertData(

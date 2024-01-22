@@ -149,13 +149,41 @@ public class ConcertController : ControllerBase
     public IActionResult NewConcert(Concert newConcert)
     {
 
-        
+
         _dbContext.Concerts.Add(newConcert);
         _dbContext.SaveChanges();
         return Created($"/api/concert/{newConcert.Id}", newConcert);
     }
 
 
-}
+    //=================================================================================================
 
+
+
+    [HttpPut("{id}")]
+    // [Authorize]
+    public IActionResult UpdateConcert(int id, Concert incomingConcert)
+    {
+        Concert? concertToUpdate = _dbContext.Concerts
+        .Include(concert => concert.BandConcerts)
+        .SingleOrDefault(c => c.Id == id);
+        if (concertToUpdate == null)
+        {
+            return NotFound();
+        }
+        
+        // Apply changes directly to the entity fetched from the database
+        concertToUpdate.VenueId = incomingConcert.VenueId;
+        concertToUpdate.Time = incomingConcert.Time;
+        concertToUpdate.Date = incomingConcert.Date;
+        // then we override band concerts
+        concertToUpdate.BandConcerts = incomingConcert.BandConcerts;
+
+        _dbContext.SaveChanges();
+
+        return Ok("Concert updated successfully");
+    }
+
+
+}
 

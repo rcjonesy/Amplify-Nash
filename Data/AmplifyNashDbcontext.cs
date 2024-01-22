@@ -145,16 +145,16 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<Concert>().HasData(new Concert[]
         {
-            new Concert { Id = 1, VenueId = 1, Time = "7:00", Date = new DateTime(2024, 2, 1), TicketsSold = 120},
-            new Concert { Id = 2, VenueId = 2, Time = "8:30", Date = new DateTime(2024, 2, 5), TicketsSold = 110},
-            new Concert { Id = 3, VenueId = 3, Time = "6:45", Date = new DateTime(2024, 2, 10), TicketsSold = 105},
-            new Concert { Id = 4, VenueId = 4, Time = "9:15", Date = new DateTime(2024, 2, 15), TicketsSold = 100},
-            new Concert { Id = 5, VenueId = 5, Time = "7:30", Date = new DateTime(2024, 2, 20), TicketsSold = 120},
-            new Concert { Id = 6, VenueId = 1, Time = "8:00", Date = new DateTime(2024, 2, 25), TicketsSold = 110},
-            new Concert { Id = 7, VenueId = 2, Time = "6:15", Date = new DateTime(2024, 2, 8), TicketsSold = 105},
-            new Concert { Id = 8, VenueId = 3, Time = "9:45", Date = new DateTime(2024, 2, 13), TicketsSold = 100},
-            new Concert { Id = 9, VenueId = 4, Time = "7:45", Date = new DateTime(2024, 2, 18), TicketsSold = 120},
-            new Concert { Id = 10, VenueId = 5, Time = "8:15", Date = new DateTime(2024, 2, 23), TicketsSold = 110},
+            new Concert { Id = 1, VenueId = 1, Time = "7:00", Date = new DateTime(2024, 2, 1)},
+            new Concert { Id = 2, VenueId = 2, Time = "8:30", Date = new DateTime(2024, 2, 5)},
+            new Concert { Id = 3, VenueId = 3, Time = "6:45", Date = new DateTime(2024, 2, 10)},
+            new Concert { Id = 4, VenueId = 4, Time = "9:15", Date = new DateTime(2024, 2, 15)},
+            new Concert { Id = 5, VenueId = 5, Time = "7:30", Date = new DateTime(2024, 2, 20)},
+            new Concert { Id = 6, VenueId = 1, Time = "8:00", Date = new DateTime(2024, 2, 25)},
+            new Concert { Id = 7, VenueId = 2, Time = "6:15", Date = new DateTime(2024, 2, 8)},
+            new Concert { Id = 8, VenueId = 3, Time = "9:45", Date = new DateTime(2024, 2, 13)},
+            new Concert { Id = 9, VenueId = 4, Time = "7:45", Date = new DateTime(2024, 2, 18)},
+            new Concert { Id = 10, VenueId = 5, Time = "8:15", Date = new DateTime(2024, 2, 23)},
         });
 
         modelBuilder.Entity<BandConcert>().HasData(new BandConcert[]
