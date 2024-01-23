@@ -1,0 +1,8 @@
+.background-image {
+    background-image: url('C:\Users\ryanc\workspace\AmplifyNash\client\src\img\jorik-kleen-x1yHtSg1DsQ-unsplash (1).jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-size: contain; /* This will make the image cover the entire element */
+    background-position: 60% center; /* This will center the image within the element */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+    height: 100vh; 
+    overflow-y: scroll
+  }

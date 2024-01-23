@@ -3,6 +3,10 @@ import { getHeadliningBands, getSupportingBands } from "../../managers/BandManag
 import { postNewConcert } from "../../managers/ConcertManager";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import "../../background.css";
+
+
+
 
 
 
@@ -19,13 +23,14 @@ export const BookConcert = () => {
     const [newConcert, setNewConcert] = useState({
         date: "",
         time: "",
-        venueId: "", 
+        venueId: "",
         bandConcerts: []
     });
 
     const [venues, setVenues] = useState([])
     const [supporting, setSupporting] = useState([])
     const [headliners, setHeadliners] = useState([])
+
 
 
     const handleGetVenues = () => {
@@ -60,16 +65,19 @@ export const BookConcert = () => {
     }
 
     const venueSelect = (event) => {
-        setNewConcert({ ...newConcert, venueId: event.target.value *1})
+        setNewConcert({ ...newConcert, venueId: event.target.value * 1 })
     }
 
     const headlinerSelect = (event) => {
         setNewConcert({
             ...newConcert, bandConcerts: [
-                { bandId: event.target.value *1 }
+                { bandId: event.target.value * 1 }
             ]
         })
     }
+
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in the format YYYY-MM-DD
+
 
 
 
@@ -102,7 +110,7 @@ export const BookConcert = () => {
 
 
     const handleSubmit = (event, choreObj) => {
-        
+
         event.preventDefault()
         postNewConcert(choreObj).then(() => {
             navigate("/")
@@ -111,49 +119,53 @@ export const BookConcert = () => {
 
     return (
 
-        
-        <div className=" min-h-screen">
-            <div className="max-w-xl  mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
-                <h2 className="text-2xl font-semibold mb-6">New Concert</h2>
-                <form className="mt-10 ">
 
-                    <div className="mb-4">
-                        <label className="block text-black text-xl mb-2">Date</label>
+        <div className="min-h-screen">
+            <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
+                <h2 className="text-2xl font-semibold mb-6">BookConcert</h2>
+                <form className="mt-10">
+
+                    <div className="mb-4 relative">
+                        <label className="block text-gray-600">Date</label>
                         <input
                             type="date"
-                            className="mt-1 p-3 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                            required
+                            className="mt-1 p-2 w-full border rounded-lg appearance-none shadow-sm"
+                            placeholder="Select Date"
+                            value={newConcert?.date ? newConcert.date.split('T')[0] : ''}
                             onChange={datePick}
+                            min={today} // Set the minimum allowed date to today
+
+
                         />
                     </div>
-                    
-    
+
 
                     <div className="mb-4">
-                        <label className="block text-black text-xl mb-2 ">Time</label>
+                        <label className="block text-gray-600">Time</label>
                         <input
                             type="text"
                             name="time"
-                            className="mt-1 p-3 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                            required
+                            className="mt-1 p-2 w-full border rounded-lg shadow-sm appearance-auto"
+                            placeholder="Enter Time"
+                            value={newConcert?.time}
                             onChange={concertTime}
                         />
                     </div>
 
                     {/* Venue Select */}
                     <div className="mb-4">
-                        <label className="block text-black text-xl mb-2">Venue</label>
+                        <label className="block text-gray-600">Venue</label>
                         <select
                             name="venue"
-                            className="mt-1 p-3 w-full border rounded-md focus:outline-none focus:border-blue-500 appearance-none"
-                            required
+                            className="mt-1 p-2 w-full border rounded-lg shadow-sm"
+                            placeholder="Select Venue"
+                            // value={newConcert?.id || ''}
                             onChange={venueSelect}
                         >
-                            <option value="">Select Venue</option>
                             {venues.map((venue) => (
-
-                                <option key={venue.id} value={venue.id}>{venue.name}</option>
-
+                                <option key={venue.id} value={venue.id}>
+                                    {venue.name}
+                                </option>
                             ))}
                         </select>
                     </div>
@@ -161,25 +173,24 @@ export const BookConcert = () => {
 
                     {/* Headlining Band Select */}
                     <div className="mb-4">
-                        <label className="block text-black text-xl mb-2">Headlining Band</label>
+                        <label className="block text-gray-600">Headlining Band</label>
                         <select
                             name="headliningBand"
-                            className="mt-1 p-3 w-full border rounded-md focus:outline-none focus:border-blue-500 appearance-none"
-                            required
+                            className="mt-1 p-2  border rounded-lg shadow-sm"
+                            placeholder="Select Headlining Band"
+                            value={newConcert?.bandConcerts?.find(bc => bc.band?.isHeadliner)?.bandId}
                             onChange={headlinerSelect}
+
                         >
-                            <option value="">Select Headlining Band</option>
                             {headliners.map((headliner) => (
-
-                                <option key={headliner.id} value={headliner.id}>{headliner.name}</option>
-
+                                <option key={headliner.id} value={headliner.id}>
+                                    {headliner.name}
+                                </option>
                             ))}
-
                         </select>
                     </div>
 
 
-                    {/* Supporting Bands Checkboxes */}
                     <div className="mb-4">
                         <label className="text-black text-xl flex items-center space-x-2 mb-2">Supporting Bands</label>
                         <div>
@@ -197,7 +208,6 @@ export const BookConcert = () => {
                             ))}
                         </div>
                     </div>
-
 
                     {/* Submit Button */}
                     <button

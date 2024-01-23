@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { logout } from "../managers/authManager";
 
+
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
     const [open, setOpen] = useState(false);
 
@@ -19,8 +20,8 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
     return (
         <div>
-            <Navbar  light fixed="true" expand="lg">
-                <NavbarBrand tag={RRNavLink} to="/">
+            <Navbar fixed="true" expand="lg" className="bg-black text-white">
+                <NavbarBrand tag={RRNavLink} className="text-white" to="/">
                     Amplify Nash
                 </NavbarBrand>
 
@@ -30,17 +31,17 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                         <Collapse isOpen={open} navbar>
                             <Nav className="mr-auto" navbar>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/venues">
+                                    <NavLink tag={RRNavLink} className="text-white" to="/venues">
                                         Venue Info
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/newconcert">
+                                    <NavLink tag={RRNavLink} className="text-white" to="/newconcert">
                                         Book Concert
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/bands">
+                                    <NavLink tag={RRNavLink} className="text-white" to="/bands">
                                         Band Roster
                                     </NavLink>
                                 </NavItem>

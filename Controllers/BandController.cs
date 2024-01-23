@@ -27,43 +27,114 @@ public class BandController : ControllerBase
     }
 
 
-//=================================================================================================
+    //=================================================================================================
 
-[HttpGet("headliners")]
-// Authorize
-public IActionResult HeadlinerBands()
-{
-    return Ok(_dbContext
-        .Bands
-        .Where(band => band.IsHeadliner == true)
-        
-        .Select(band => new BandDTO
+    [HttpGet("headliners")]
+    // Authorize
+    public IActionResult HeadlinerBands()
+    {
+        return Ok(_dbContext
+            .Bands
+            .Where(band => band.IsHeadliner == true)
+
+            .Select(band => new BandDTO
+            {
+                Id = band.Id,
+                Name = band.Name,
+                IsHeadliner = band.IsHeadliner
+            })
+            .ToList());
+    }
+
+    //=================================================================================================
+
+    [HttpGet("supporting")]
+    // Authorize
+    public IActionResult SupportingBands()
+    {
+        return Ok(_dbContext
+            .Bands
+            .Where(band => band.IsHeadliner == false)
+
+            .Select(band => new BandDTO
+            {
+                Id = band.Id,
+                Name = band.Name,
+                IsHeadliner = band.IsHeadliner
+            })
+            .ToList());
+    }
+
+    //=================================================================================================
+
+    [HttpGet()]
+    // Authorize
+    public IActionResult AllBands()
+    {
+        return Ok(_dbContext
+            .Bands
+            .Include(band => band.BandMembers)
+
+            .Select(band => new BandDTO
+            {
+                Id = band.Id,
+                Name = band.Name,
+                Bio = band.Bio,
+                Genre = band.Genre,
+                IsHeadliner = band.IsHeadliner,
+                BandMembers = band.BandMembers.Select(bandMember => new BandMemberDTO
+                {
+                    Id = bandMember.Id,
+                    Name = bandMember.Name,
+                    Instrument = bandMember.Instrument
+
+                }).ToList()
+
+            })
+            .ToList());
+    }
+
+
+    //=================================================================================================
+
+
+    //get all bands by Id
+    [HttpGet("{id}")]
+    public IActionResult GetBandById(int id)
+    {
+        Band? band = _dbContext.Bands
+            .Include(band => band.BandMembers)
+            .SingleOrDefault(band => band.Id == id);
+
+        if (band == null)
+        {
+            return NotFound();
+        }
+
+        BandDTO bandDTO = new BandDTO
         {
             Id = band.Id,
             Name = band.Name,
-            IsHeadliner = band.IsHeadliner
-        })
-        .ToList());
-}
+            Bio = band.Bio,
+            Genre = band.Genre,
+            IsHeadliner = band.IsHeadliner,
+            BandMembers = band.BandMembers.Select(bandMember => new BandMemberDTO
+            {
+                Id = bandMember.Id,
+                Name = bandMember.Name,
+                Instrument = bandMember.Instrument
 
-//=================================================================================================
+            }).ToList()
 
-[HttpGet("supporting")]
-// Authorize
-public IActionResult SupportingBands()
-{
-    return Ok(_dbContext
-        .Bands
-        .Where(band => band.IsHeadliner == false)
-        
-        .Select(band => new BandDTO
-        {
-            Id = band.Id,
-            Name = band.Name,
-            IsHeadliner = band.IsHeadliner
-        })
-        .ToList());
-}
+            // Add other properties as needed
+        };
+
+        return Ok(bandDTO);
+    }
+
+
+
+
 
 
 }

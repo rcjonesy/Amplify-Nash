@@ -5,3 +5,11 @@ export const getHeadliningBands = () => {
 export const getSupportingBands = () => {
     return fetch("/api/band/supporting").then((response) => response.json())
 }
+
+export const getAllBandsWithMembers = () => {
+    return fetch("/api/band").then((response) => response.json())
+}
+
+export const getBandById = id => {
+    return fetch(`api/band/${id}`.then((response) => response.json()))
+}
