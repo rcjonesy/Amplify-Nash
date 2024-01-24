@@ -293,12 +293,12 @@ namespace AmplifyNash.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "8758f415-39ca-40fa-83e9-cbcec642ee70", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "de9b7009-0ac7-4533-80cd-0bf356f9ecad", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "e9a48bc6-84f9-47fd-9d42-201af76e8484", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFIcNIKbvTGqzyRpUuu18It8TQ5iONXmdrCEkCh3Jus0Bq338zQn4nfQs6dPbUKf9g==", null, false, "2eeda9ba-7e40-4776-8fcd-4320c28c5448", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "9cc95a5a-e7d7-49db-adc7-2f2a1d5ae060", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEK4WnHWobWl+4sKAgoUQtENYlu+rc0XzO9KPU84E22BwV+oIs5x5oxzVo419QwzbwQ==", null, false, "54c4cf79-caeb-4342-85e2-b777f940d348", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

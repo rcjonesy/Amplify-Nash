@@ -25,8 +25,8 @@ export const Home = () => {
     };
 
     return (
-        <div className="flex flex-wrap justify-center items-start min-h-screen bg-black bg-opacity-50">
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 bg-opacity-50">
+        <div className="flex flex-wrap justify-center items-start min-h-screen bg-white bg-opacity-50">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 bg-opacity-50 w-3/4">
                 <Table responsive striped bordered hover dark>
                     <thead className="text-lg uppercase">
                         <tr>
@@ -35,6 +35,7 @@ export const Home = () => {
                             <th className="px-6 py-4 text-center">Venue</th>
                             <th className="px-6 py-4 text-center">Headlining Artist</th>
                             <th className="px-6 py-4 text-center">Supporting Artist(s)</th>
+                            <th className="px-6 py-4 text-center">Status</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -73,9 +74,11 @@ export const Home = () => {
                                         </ul>
                                     </td>
 
+                                   <td>
 
+                                   </td>
 
-                                    <td className="align-middle">
+                                    <td className="text-center align-middle">
                                         <Button
                                             color="primary"
                                             onClick={() => handleMakeChangeClick(concert.id)}
@@ -83,7 +86,7 @@ export const Home = () => {
                                             Make Changes
                                         </Button>
                                     </td>
-                                    <td className="text-righ align-middle">
+                                    <td className="text-center align-middle">
                                         <Button
                                             color="danger"
                                             onClick={() => handleDeleteConcert(concert.id)}

@@ -25,7 +25,7 @@ export const VenueList = () => {
     return (
         <div className="min-h-screen bg-black p-4 flex flex-col items-center">
             <div className="flex justify-around w-full mt-10 min-h-screen">
-                <div className="w-1/2 max-w-screen-lg max-h-97 overflow-y-auto mr-4 mt-4">
+                <div className="w-3/4 max-h-97 overflow-y-auto mr-4 mt-4">
                     <Table responsive striped bordered hover dark className="">
                         <thead className="text-lg text-gray-700 uppercase bg-slate-200">
                             <tr>

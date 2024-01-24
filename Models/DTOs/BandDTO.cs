@@ -8,6 +8,7 @@ public class BandDTO
     public string Genre { get; set; }
     public bool IsHeadliner { get; set; }
     public List<BandMemberDTO> BandMembers { get; set; }
+    public List<BandConcertDTO>? BandConcerts { get; set; }
     public int? UserProfileId { get; set; }
     public UserProfileDTO? UserProfile { get; set; }
 }

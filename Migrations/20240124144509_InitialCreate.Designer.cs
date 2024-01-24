@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AmplifyNash.Migrations
 {
     [DbContext(typeof(AmplifyNashDbContext))]
-    [Migration("20240120163926_InitialCreate")]
+    [Migration("20240124144509_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -945,7 +945,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "8758f415-39ca-40fa-83e9-cbcec642ee70",
+                            ConcurrencyStamp = "de9b7009-0ac7-4533-80cd-0bf356f9ecad",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1044,13 +1044,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9a48bc6-84f9-47fd-9d42-201af76e8484",
+                            ConcurrencyStamp = "9cc95a5a-e7d7-49db-adc7-2f2a1d5ae060",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEFIcNIKbvTGqzyRpUuu18It8TQ5iONXmdrCEkCh3Jus0Bq338zQn4nfQs6dPbUKf9g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK4WnHWobWl+4sKAgoUQtENYlu+rc0XzO9KPU84E22BwV+oIs5x5oxzVo419QwzbwQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2eeda9ba-7e40-4776-8fcd-4320c28c5448",
+                            SecurityStamp = "54c4cf79-caeb-4342-85e2-b777f940d348",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -1156,7 +1156,7 @@ namespace AmplifyNash.Migrations
             modelBuilder.Entity("AmplifyNash.Models.BandConcert", b =>
                 {
                     b.HasOne("AmplifyNash.Models.Band", "Band")
-                        .WithMany()
+                        .WithMany("BandConcerts")
                         .HasForeignKey("BandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1265,6 +1265,8 @@ namespace AmplifyNash.Migrations
 
             modelBuilder.Entity("AmplifyNash.Models.Band", b =>
                 {
+                    b.Navigation("BandConcerts");
+
                     b.Navigation("BandMembers");
                 });
 

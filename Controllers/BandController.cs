@@ -104,6 +104,9 @@ public class BandController : ControllerBase
     {
         Band? band = _dbContext.Bands
             .Include(band => band.BandMembers)
+            .Include(band => band.BandConcerts)
+                .ThenInclude(bandConcert => bandConcert.Concert)
+                .ThenInclude(concert => concert.Venue)
             .SingleOrDefault(band => band.Id == id);
 
         if (band == null)
@@ -118,6 +121,22 @@ public class BandController : ControllerBase
             Bio = band.Bio,
             Genre = band.Genre,
             IsHeadliner = band.IsHeadliner,
+            BandConcerts = band.BandConcerts.Select(bandConcert => new BandConcertDTO
+            {
+                Id = bandConcert.Id,
+                ConcertId = bandConcert.ConcertId,
+                Concert = bandConcert.Concert != null ? new ConcertDTO
+                {
+                    Id = bandConcert.ConcertId,
+                    Date = bandConcert.Concert.Date,
+                    VenueId = bandConcert.Concert.VenueId,
+                    Venue = bandConcert.Concert.Venue != null ? new VenueDTO
+                    {
+                        Name = bandConcert.Concert.Venue.Name
+                    } : null
+                } : null
+            }).ToList(),
+
             BandMembers = band.BandMembers.Select(bandMember => new BandMemberDTO
             {
                 Id = bandMember.Id,
@@ -126,7 +145,7 @@ public class BandController : ControllerBase
 
             }).ToList()
 
-            // Add other properties as needed
+            
         };
 
         return Ok(bandDTO);
@@ -134,6 +153,42 @@ public class BandController : ControllerBase
 
 
 
+
+//=================================================================================================
+
+// add band
+
+    [HttpPost]
+    // [Authorize]
+
+    public IActionResult NewBand(Band newBand)
+    {
+
+        _dbContext.Bands.Add(newBand);
+        _dbContext.SaveChanges();
+        return Created($"/api/band/{newBand.Id}", newBand);
+    }
+
+ //=================================================================================================
+
+    
+    //delete band
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteBand(int id)
+    {
+        Band? bandToDelete = _dbContext.Bands.SingleOrDefault(b => b.Id == id);
+
+        if (bandToDelete == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Bands.Remove(bandToDelete);
+        _dbContext.SaveChanges();
+
+        return Ok("band deleted successfully");
+    }
 
 
 

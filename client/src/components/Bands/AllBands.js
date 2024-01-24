@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
-import { getAllBandsWithMembers } from "../../managers/BandManager"
-import { Card, CardBody, CardTitle, CardText, CardSubtitle, Button } from 'reactstrap'
-import { Navigate, useNavigate } from "react-router-dom"
+import { getAllBandsWithMembers, deleteBand } from "../../managers/BandManager"
+import { Card, CardBody, CardTitle, Button } from 'reactstrap'
+
+import { BandDetails } from "./BandDetails"
 
 
 
 
 export const AllBands = () => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const [allBands, setAllBands] = useState([])
 
@@ -16,39 +17,48 @@ export const AllBands = () => {
         getAllBandsWithMembers().then(setAllBands)
     }
 
+    const handleDeleteBand = (bandId) => {
+        deleteBand(bandId)
+            .then(() => {
+                handleGetBands();
+            })
+    };
+
     useEffect(() => {
         handleGetBands()
     }, [])
 
     return (
-        <div className="flex flex-wrap justify-around">
-            {allBands.map((band) => (
-                <Card
-                    key={band.id}
-                    className="w-1/5 p-4 mb-4, mt-4 ml-4 mr-4"
-                >
-                   <img
-    alt="Sample"
-    src="./LunarEssence.png"
-    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-/>
+        <div className="bg-black">
+            <div className="flex flex-wrap justify-around">
+                {allBands.map((band) => (
+                    <Card key={band.id} className="w-1/5 p-4 mb-4 mt-4 ml-4 mr-4">
+                        <img
+                            alt="Sample"
+                            src="./LunarEssence.png"
+                            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                        />
 
+                        <CardBody className="flex flex-col items-center">
+                            <CardTitle className="text-2xl mt-3 mb-3 tracking-wider">
+                                {band.name}
+                            </CardTitle>
 
-                    <CardBody className="flex flex-col items-center">
+                            <div className="flex flex-col items-center">
+                                <BandDetails bandObj={band} />
 
-                        <CardTitle className="text-2xl mt-3 mb-3 tracking-wider">
-
-                            {band.name}
-
-                        </CardTitle>
-
-                        <Button
-                        onClick={() => navigate(`${band.id}`)}>
-                            More Info
-                        </Button>
-                    </CardBody>
-                </Card>
-            ))}
+                                <Button
+                                    color="danger"
+                                    className="mt-2"
+                                    onClick={() => handleDeleteBand(band.id)}
+                                >
+                                    Delete
+                                </Button>
+                            </div>
+                        </CardBody>
+                    </Card>
+                ))}
+            </div>
         </div>
     );
 

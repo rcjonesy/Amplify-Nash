@@ -45,6 +45,11 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                                         Band Roster
                                     </NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} className="text-white" to="/addband">
+                                        Add Band
+                                    </NavLink>
+                                </NavItem>
                             </Nav>
                             <Button
                                 color="primary"
