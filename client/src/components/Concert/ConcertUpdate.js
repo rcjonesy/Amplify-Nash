@@ -61,9 +61,9 @@ export const ConcertUpdate = () => {
     const handleVenue = (event) => {
         setConcert({ ...concert, venueId: event.target.value })
     }
-    
-   
-    
+
+
+
 
 
     const handleHeadliner = (event) => {
@@ -85,7 +85,7 @@ export const ConcertUpdate = () => {
         // Extracting bandId and isChecked from the event
         const bandId = event.target.value;
         const isChecked = event.target.checked; //true or false
-    
+
 
 
         setConcert((currentConcert) => {
@@ -114,11 +114,9 @@ export const ConcertUpdate = () => {
             }
         })
         updateConcert(concert.id, copy)
+            .then(() => navigate('/'))
 
-        navigate('/')
     };
-
-
 
 
 
