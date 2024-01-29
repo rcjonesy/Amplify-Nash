@@ -38,6 +38,9 @@ namespace AmplifyNash.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsHeadliner")
                         .HasColumnType("boolean");
 
@@ -60,6 +63,7 @@ namespace AmplifyNash.Migrations
                             Id = 1,
                             Bio = "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.",
                             Genre = "Indie Rock",
+                            Img = "./Lunar.png",
                             IsHeadliner = true,
                             Name = "Lunar Essence",
                             UserProfileId = 1
@@ -69,6 +73,7 @@ namespace AmplifyNash.Migrations
                             Id = 2,
                             Bio = "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.",
                             Genre = "Rock",
+                            Img = "./Sonic.png",
                             IsHeadliner = true,
                             Name = "Sonic Catalyst",
                             UserProfileId = 1
@@ -78,6 +83,7 @@ namespace AmplifyNash.Migrations
                             Id = 3,
                             Bio = "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.",
                             Genre = "Indie Pop",
+                            Img = "./Aurora.png",
                             IsHeadliner = true,
                             Name = "Aurora Melodies",
                             UserProfileId = 1
@@ -87,6 +93,7 @@ namespace AmplifyNash.Migrations
                             Id = 4,
                             Bio = "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.",
                             Genre = "Rock",
+                            Img = "./Rebel.png",
                             IsHeadliner = true,
                             Name = "Rebel Resonance",
                             UserProfileId = 1
@@ -96,6 +103,7 @@ namespace AmplifyNash.Migrations
                             Id = 5,
                             Bio = "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.",
                             Genre = "Indie Rock",
+                            Img = "./Whispering.png",
                             IsHeadliner = true,
                             Name = "Whispering Echoes",
                             UserProfileId = 1
@@ -105,6 +113,7 @@ namespace AmplifyNash.Migrations
                             Id = 6,
                             Bio = "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.",
                             Genre = "Indie Electro-Pop",
+                            Img = "./Hues.png",
                             IsHeadliner = false,
                             Name = "Electric Hues",
                             UserProfileId = 1
@@ -114,6 +123,7 @@ namespace AmplifyNash.Migrations
                             Id = 7,
                             Bio = "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.",
                             Genre = "Funk/Soul/Jazz Fusion",
+                            Img = "./Urban.png",
                             IsHeadliner = false,
                             Name = "Urban Groove Collective",
                             UserProfileId = 1
@@ -123,6 +133,7 @@ namespace AmplifyNash.Migrations
                             Id = 8,
                             Bio = "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.",
                             Genre = "Alternative Rock",
+                            Img = "./Neon.png",
                             IsHeadliner = false,
                             Name = "Neon Skylines",
                             UserProfileId = 1
@@ -132,6 +143,7 @@ namespace AmplifyNash.Migrations
                             Id = 9,
                             Bio = "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.",
                             Genre = "Indie/Soul/Jazz Fusion",
+                            Img = "./Crimson.png",
                             IsHeadliner = false,
                             Name = "Crimson Harmony",
                             UserProfileId = 1
@@ -141,6 +153,7 @@ namespace AmplifyNash.Migrations
                             Id = 10,
                             Bio = "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.",
                             Genre = "Psychedelic Rock",
+                            Img = "./Mystic.png",
                             IsHeadliner = false,
                             Name = "Mystic Soundwaves",
                             UserProfileId = 1
@@ -943,7 +956,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "de9b7009-0ac7-4533-80cd-0bf356f9ecad",
+                            ConcurrencyStamp = "e34d7e30-bc6a-4ecc-8f3b-cebb8ec8bc26",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1042,13 +1055,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9cc95a5a-e7d7-49db-adc7-2f2a1d5ae060",
+                            ConcurrencyStamp = "e250d8dc-c7d0-43fa-96db-caf18cbc0905",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEK4WnHWobWl+4sKAgoUQtENYlu+rc0XzO9KPU84E22BwV+oIs5x5oxzVo419QwzbwQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENbuWELxhXiMgj6mkSuMLwq0MstalSyugSK3EWiSB2g6fElKrpG0jst6+d+iEokQPw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "54c4cf79-caeb-4342-85e2-b777f940d348",
+                            SecurityStamp = "fad4a834-6788-475e-97f0-d6231cc7da76",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });

@@ -118,6 +118,10 @@ export const ConcertUpdate = () => {
 
     };
 
+    const handleCancel = (event) => {
+        navigate('/')
+    }
+
 
 
 
@@ -128,8 +132,8 @@ export const ConcertUpdate = () => {
 
     return (
 
-        <div className="min-h-screen">
-            <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
+        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-center">
+            <div className="max-w-xl w-full p-6 bg-white rounded-md shadow-md">
                 <h2 className="text-2xl font-semibold mb-6">Update Concert</h2>
                 <form className="mt-10">
 
@@ -222,6 +226,14 @@ export const ConcertUpdate = () => {
                         onClick={handleSubmit}
                     >
                         Submit
+                    </button>
+
+                    <button
+                        type="submit"
+                        className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded ml-5"
+                        onClick={handleCancel}
+                    >
+                        Cancel
                     </button>
                 </form>
             </div>

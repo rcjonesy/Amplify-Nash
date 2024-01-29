@@ -9,6 +9,7 @@ import { BookConcert } from "./Concert/BookConcert";
 import { AllBands } from "./Bands/AllBands";
 import { BandDetails } from "./Bands/BandDetails";
 import { AddBand } from "./Bands/AddBand";
+import { Map } from "./Maps/Map";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -58,6 +59,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
             <AddBand />
+          </AuthorizedRoute>
+        }
+      />
+         <Route
+        path="/maps"
+        element={
+          <AuthorizedRoute loggedInUser={loggedInUser}>
+            <Map />
           </AuthorizedRoute>
         }
       />

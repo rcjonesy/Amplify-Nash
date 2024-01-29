@@ -1,7 +1,8 @@
-import { getBandById} from "../../managers/BandManager";
+import { getBandById } from "../../managers/BandManager";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { FaEllipsisH } from "react-icons/fa";
 
 export const BandDetails = ({ bandObj }) => {
 
@@ -28,15 +29,16 @@ export const BandDetails = ({ bandObj }) => {
 
   return (
     <div>
-      
-      <Button color="primary" onClick={toggleModal}>
-        Details
-      </Button>
-     
+
+      <div className="cursor-pointer text-2xl" onClick={toggleModal}>
+        <FaEllipsisH />
+      </div>
+
+
       <Modal isOpen={modal} toggle={toggleModal} className="modal-lg">
-        <ModalHeader toggle={toggleModal}>{band.name}</ModalHeader>
-        <ModalBody>
-          <h2 className="text-3xl font-bold mb-2">{band.name}</h2>
+        <ModalHeader toggle={toggleModal} className="bg-slate-200">{band.name}</ModalHeader>
+        <ModalBody className="bg-slate-100">
+          
           <div className="mb-2">
             <p className="text-lg mb-1"><span className="font-semibold text-xl">Genre:</span></p>
             <p className="text-sm">-{band.genre}</p>
@@ -48,7 +50,7 @@ export const BandDetails = ({ bandObj }) => {
           {band.bandMembers && band.bandMembers.length > 0 ? (
             <div>
               <p className="text-sm font-semibold">Band Members:</p>
-              <ul>
+              <ul className="list-disc pl-4">
                 {band.bandMembers.map((member) => (
                   <li key={member.id} className="mb-2">
                     <p className="text-sm font-semibold">{member.name}</p>
@@ -63,7 +65,7 @@ export const BandDetails = ({ bandObj }) => {
           <div>
             <p className="text-sm font-semibold">Upcoming Schedule:</p>
             {band.bandConcerts && band.bandConcerts.length > 0 ? (
-              <ul>
+              <ul className="list-disc pl-4">
                 {band.bandConcerts.map((bandConcert) => (
                   <li key={bandConcert.id} className="mb-2">
                     <p className="text-sm"><span className="font-semibold">Venue:</span> {bandConcert.concert.venue.name}</p>
@@ -75,12 +77,13 @@ export const BandDetails = ({ bandObj }) => {
               <p className="text-sm mb-3">No upcoming concerts</p>
             )}
           </div>
+
         </ModalBody>
-        <ModalFooter>
+        {/* <ModalFooter>
           <Button color="danger" onClick={toggleModal}>
             Close
           </Button>
-        </ModalFooter>
+        </ModalFooter> */}
       </Modal>
     </div>
   );

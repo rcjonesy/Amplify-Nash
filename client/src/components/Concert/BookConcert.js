@@ -3,7 +3,7 @@ import { getHeadliningBands, getSupportingBands } from "../../managers/BandManag
 import { postNewConcert } from "../../managers/ConcertManager";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import "../../background.css";
+// import "../../background.css";
 
 
 
@@ -109,27 +109,30 @@ export const BookConcert = () => {
 
 
 
-    const handleSubmit = (event, choreObj) => {
-
+    const handleSubmit = (event, concertObj) => {
+        
         event.preventDefault()
-        postNewConcert(choreObj).then(() => {
+        postNewConcert(concertObj).then(() => {
             navigate("/")
         })
     }
 
+  
+
     return (
 
 
-        <div className="min-h-screen">
-            <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-md shadow-md">
-                <h2 className="text-2xl font-semibold mb-6">BookConcert</h2>
-                <form className="mt-10">
+        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-center">
+        {/* Use flexbox utilities to center the form vertically and horizontally */}
+        <div className="max-w-xl w-full p-6 bg-white rounded-md shadow-md">
+            <h2 className="text-2xl font-semibold mb-6">Book Concert</h2>
+                <form className="">
 
                     <div className="mb-4 relative">
                         <label className="block text-gray-600">Date</label>
                         <input
                             type="date"
-                            className="mt-1 p-2 w-full border rounded-lg appearance-none shadow-sm"
+                            className="mt-1 p-2 w-full border rounded-lg"
                             placeholder="Select Date"
                             value={newConcert?.date ? newConcert.date.split('T')[0] : ''}
                             onChange={datePick}
@@ -145,7 +148,7 @@ export const BookConcert = () => {
                         <input
                             type="text"
                             name="time"
-                            className="mt-1 p-2 w-full border rounded-lg shadow-sm appearance-auto"
+                            className="mt-1 p-2 w-full border rounded-lg appearance-auto"
                             placeholder="Enter Time"
                             value={newConcert?.time}
                             onChange={concertTime}
@@ -157,7 +160,7 @@ export const BookConcert = () => {
                         <label className="block text-gray-600">Venue</label>
                         <select
                             name="venue"
-                            className="mt-1 p-2 w-full border rounded-lg shadow-sm"
+                            className="mt-1 p-2 w-full border rounded-lg"
                             placeholder="Select Venue"
                             // value={newConcert?.id || ''}
                             onChange={venueSelect}
@@ -176,7 +179,7 @@ export const BookConcert = () => {
                         <label className="block text-gray-600">Headlining Band</label>
                         <select
                             name="headliningBand"
-                            className="mt-1 p-2  border rounded-lg shadow-sm"
+                            className="mt-1 p-2  border rounded-lg"
                             placeholder="Select Headlining Band"
                             value={newConcert?.bandConcerts?.find(bc => bc.band?.isHeadliner)?.bandId}
                             onChange={headlinerSelect}
@@ -195,7 +198,7 @@ export const BookConcert = () => {
                         <label className="text-black text-xl flex items-center space-x-2 mb-2">Supporting Bands</label>
                         <div>
                             {supporting.map((band) => (
-                                <label key={band.id} className="flex items-center cursor-pointer transition-all duration-300 hover:bg-gray-100 rounded-md p-2">
+                                <label key={band.id} className="flex items-center cursor-pointer transition-all duration-300 hover:bg-gray-100 rounded-md p-1">
                                     <input
                                         type="checkbox"
                                         name="supportingBands"
@@ -217,9 +220,18 @@ export const BookConcert = () => {
                     >
                         Submit
                     </button>
+
+                    {/* <button
+                        type="submit"
+                        className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded ml-5"
+                        onClick={navigate('/')}
+                    >
+                        Cancel
+                    </button> */}
                 </form>
             </div>
         </div>
+        
     );
 
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { newVenue } from "../../managers/VenueManager";
 import PropTypes from 'prop-types';
-import { IoMdAdd } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
 
 export const AddVenue = ({ handleVenues }) => {
     const [venue, setVenue] = useState({});
@@ -45,8 +45,8 @@ export const AddVenue = ({ handleVenues }) => {
 
     return (
         <div>
-            <Button onClick={toggle} className="backdrop-blur-60 ml-5">
-                <IoMdAdd />
+            <Button onClick={toggle} color='primary' className="backdrop-blur-60 ml-5 bg-blue-500 mr-6 mt-2">
+            Add Venue
             </Button>
             <Modal isOpen={modal} toggle={toggle} className="modal-dialog-centered">
                 <ModalHeader toggle={toggle}>Add Venue</ModalHeader>

@@ -71,16 +71,16 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
         });
         modelBuilder.Entity<Band>().HasData(new Band[]
         {
-            new Band { Id = 1, Name = "Lunar Essence", Bio = "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", Genre = "Indie Rock", IsHeadliner = true, UserProfileId = 1},
-            new Band { Id = 2, Name = "Sonic Catalyst", Bio = "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", Genre = "Rock", IsHeadliner = true, UserProfileId = 1},
-            new Band { Id = 3, Name = "Aurora Melodies", Bio = "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", Genre = "Indie Pop", IsHeadliner = true, UserProfileId = 1},
-            new Band { Id = 4, Name = "Rebel Resonance", Bio = "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", Genre = "Rock", IsHeadliner = true, UserProfileId = 1},
-            new Band { Id = 5, Name = "Whispering Echoes", Bio = "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", Genre = "Indie Rock", IsHeadliner = true, UserProfileId = 1},
-            new Band { Id = 6, Name = "Electric Hues", Bio = "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", Genre = "Indie Electro-Pop", IsHeadliner = false, UserProfileId = 1},
-            new Band { Id = 7, Name = "Urban Groove Collective", Bio = "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", Genre = "Funk/Soul/Jazz Fusion", IsHeadliner = false, UserProfileId = 1},
-            new Band { Id = 8, Name = "Neon Skylines", Bio = "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", Genre = "Alternative Rock", IsHeadliner = false, UserProfileId = 1},
-            new Band { Id = 9, Name = "Crimson Harmony", Bio = "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", Genre = "Indie/Soul/Jazz Fusion", IsHeadliner = false, UserProfileId = 1},
-            new Band { Id = 10, Name = "Mystic Soundwaves", Bio = "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", Genre = "Psychedelic Rock", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 1, Name = "Lunar Essence", Bio = "From the vibrant city of Austin, Texas, formed in 2010. Indie rock enchantment at its finest.", Genre = "Indie Rock", Img = "./Lunar.png", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 2, Name = "Sonic Catalyst", Bio = "Hailing from the eclectic city of Seattle, Washington, formed in 2013. Alternative rock pushing the boundaries.", Genre = "Rock", Img = "./Sonic.png", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 3, Name = "Aurora Melodies", Bio = "Emerging from the creative hub of Los Angeles, California, formed in 2012. Indie pop melodies that resonate with the soul.", Genre = "Indie Pop", Img = "./Aurora.png",  IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 4, Name = "Rebel Resonance", Bio = "Born in the lively city of Nashville, Tennessee, formed in 2008. Rock anthems with a revolutionary spirit.", Genre = "Rock", Img = "./Rebel.png", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 5, Name = "Whispering Echoes", Bio = "From the serene city of Portland, Oregon, formed in 2015. Dreamy indie rock under the starry sky.", Genre = "Indie Rock", Img = "./Whispering.png", IsHeadliner = true, UserProfileId = 1},
+            new Band { Id = 6, Name = "Electric Hues", Bio = "Infusing colors into soundwaves, based in San Francisco, California, formed in 2014. Indie electro-pop exploration.", Genre = "Indie Electro-Pop", Img = "./Hues.png", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 7, Name = "Urban Groove Collective", Bio = "Building grooves in the heart of New York City, formed in 2011. Fusion of funk, soul, and jazz.", Genre = "Funk/Soul/Jazz Fusion", Img = "./Urban.png", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 8, Name = "Neon Skylines", Bio = "Painting the musical canvas from Chicago, Illinois, formed in 2016. Synth-driven alt-rock landscapes.", Genre = "Alternative Rock", Img = "./Neon.png", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 9, Name = "Crimson Harmony", Bio = "Harmonizing in the misty streets of New Orleans, Louisiana, formed in 2017. Soulful indie melodies with a touch of jazz.", Genre = "Indie/Soul/Jazz Fusion", Img = "./Crimson.png", IsHeadliner = false, UserProfileId = 1},
+            new Band { Id = 10, Name = "Mystic Soundwaves", Bio = "Channeling mystic vibes from Santa Fe, New Mexico, formed in 2019. Psychedelic rock explorations.", Genre = "Psychedelic Rock", Img = "./Mystic.png", IsHeadliner = false, UserProfileId = 1},
       });
 
         modelBuilder.Entity<BandMember>().HasData(new BandMember[]

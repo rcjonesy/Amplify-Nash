@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react"
 import { getAllBandsWithMembers, deleteBand } from "../../managers/BandManager"
-import { Card, CardBody, CardTitle, Button } from 'reactstrap'
-
+import { MdDelete } from "react-icons/md";
 import { BandDetails } from "./BandDetails"
+import { MoonLoader } from "react-spinners";
+
 
 
 
 
 export const AllBands = () => {
 
-    // const navigate = useNavigate()
+    
 
     const [allBands, setAllBands] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const handleGetBands = () => {
         getAllBandsWithMembers().then(setAllBands)
+        setLoading(false)
     }
 
     const handleDeleteBand = (bandId) => {
@@ -29,39 +32,45 @@ export const AllBands = () => {
     }, [])
 
     return (
-        <div className="bg-black">
-            <div className="flex flex-wrap justify-around">
-                {allBands.map((band) => (
-                    <div key={band.id} className="w-1/5 p-4 mb-4 mt-4 ml-4 mr-4 hover:scale-105">
-                        <Card className="w-full h-full">
-                            <img
-                                alt="Sample"
-                                src="./LunarEssence.png"
-                                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                            />
-
-                            <CardBody className="flex flex-col items-center">
-                                <CardTitle className="text-2xl mt-3 mb-3 tracking-wider">
-                                    {band.name}
-                                </CardTitle>
-
-                                <div className="flex flex-col items-center">
-                                    <BandDetails bandObj={band} />
-
-                                    <Button
-                                        color="danger"
-                                        className="mt-2"
-                                        onClick={() => handleDeleteBand(band.id)}
-                                    >
-                                        Delete
-                                    </Button>
-                                </div>
-                            </CardBody>
-                        </Card>
+      <div className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen">
+         {loading ? ( 
+              <div className="flex justify-center items-center min-h-screen">
+                  <MoonLoader color="#FFFFFF" size={50} />
+              </div>
+          ) : (
+            <div className="flex flex-wrap justify-center">
+              {allBands.map((band) => (
+                <div key={band.id} className="relative w-1/5 p-8 mb-4 mt-10 ml-4 mr-4 hover:scale-105 transition">
+                  <div className="bg-gray-50 shadow-lg relative">
+                    <div className="absolute top-0 right-0 p-3">
+                      <BandDetails bandObj={band} />
                     </div>
-                ))}
+                    <div className="flex flex-col">
+                      <img
+                        alt="Sample"
+                        src={band.img}
+                        className="max-w-full h-auto rounded-full"
+                      />
+                      <div className="p-3">
+                        <div className="text-lg font-semibold">{band.name}</div>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 right-0 p-3">
+                      <div
+                        className="text-red-500 text-2xl cursor-pointer"
+                        onClick={() => handleDeleteBand(band.id)}
+                      >
+                        <MdDelete />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-        </div>
-    );
-
+          )}
+      </div>
+  );
+  
+      
+      
 }

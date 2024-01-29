@@ -6,6 +6,7 @@ public class Band
     public string Name { get; set; }
     public string Bio { get; set; }
     public string Genre { get; set; }
+    public string? Img { get; set; }
     public bool IsHeadliner { get; set; }
     public List<BandConcert>? BandConcerts { get; set; }
     public List<BandMember> BandMembers { get; set; }

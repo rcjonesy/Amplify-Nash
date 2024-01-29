@@ -82,6 +82,7 @@ public class BandController : ControllerBase
                 Bio = band.Bio,
                 Genre = band.Genre,
                 IsHeadliner = band.IsHeadliner,
+                Img = band.Img,
                 BandMembers = band.BandMembers.Select(bandMember => new BandMemberDTO
                 {
                     Id = bandMember.Id,

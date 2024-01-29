@@ -20,39 +20,51 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
     return (
         <div>
-            <Navbar fixed="true" expand="lg" className="bg-black text-white">
+            <Navbar fixed="true" expand="lg" className="bg-neutral-950 text-white border-b-2">
                 <NavbarBrand tag={RRNavLink} className="text-white" to="/">
-                    Amplify Nash
+                    <img src="./logoo.png" alt="Amplify Nash Logo" className=" ml-20 mr-20 mt-0 h-[17rem]" />
+
                 </NavbarBrand>
 
                 {loggedInUser ? (
                     <>
                         <NavbarToggler onClick={toggleNavbar} />
                         <Collapse isOpen={open} navbar>
-                            <Nav className="mr-auto" navbar>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} className="text-white" to="/venues">
-                                        Venue Info
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} className="text-white" to="/newconcert">
-                                        Book Concert
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} className="text-white" to="/bands">
-                                        Band Roster
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={RRNavLink} className="text-white" to="/addband">
-                                        Add Band
-                                    </NavLink>
-                                </NavItem>
-                            </Nav>
-                            <Button
-                                color="primary"
+                        <Nav className="mr-auto flex items-center">
+    <NavItem>
+        <NavLink tag={RRNavLink} className="text-white hover:underline text-xl" to="/venues">
+            Venue Info
+        </NavLink>
+    </NavItem>
+    <NavItem>
+        <span className="text-white mx-2 text-xl">|</span>
+    </NavItem>
+    <NavItem>
+        <NavLink tag={RRNavLink} className="text-white hover:underline" to="/newconcert">
+            Book Concert
+        </NavLink>
+    </NavItem>
+    <NavItem>
+        <span className="text-white mx-2 text-xl">|</span>
+    </NavItem>
+    <NavItem>
+        <NavLink tag={RRNavLink} className="text-white hover:underline" to="/bands">
+            Band Roster
+        </NavLink>
+    </NavItem>
+    <NavItem>
+        <span className="text-white mx-2 text-xl">|</span>
+    </NavItem>
+    <NavItem>
+        <NavLink tag={RRNavLink} className="text-white hover:underline" to="/addband">
+            Add Band
+        </NavLink>
+    </NavItem>
+  
+</Nav>
+
+                            <NavLink
+                                to="/logout"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     logout().then(() => {
@@ -60,18 +72,19 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                                         setOpen(false);
                                     });
                                 }}
+                                className="text-white font-bold py-2 px-4 rounded inline-block mt-3 mr-4 cursor-pointer hover:underline" // Adjust padding, text size, and margin
                             >
                                 Logout
-                            </Button>
+                            </NavLink>
                         </Collapse>
                     </>
                 ) : (
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
+                    <Nav className="ml-auto " navbar>
+                        {/* <NavItem>
                             <NavLink tag={RRNavLink} to="/login">
                                 <Button color="primary">Login</Button>
                             </NavLink>
-                        </NavItem>
+                        </NavItem> */}
                     </Nav>
                 )}
             </Navbar>
