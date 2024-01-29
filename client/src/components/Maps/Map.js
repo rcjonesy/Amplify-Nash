@@ -14,7 +14,7 @@ export const Map = () => {
       };
 
       return (
-        <LoadScript googleMapsApiKey="AIzaSyC40LSG_eBPlG_7VWYDfHKJbRAGLSXd8G4">
+        <LoadScript googleMapsApiKey="">
           <GoogleMap mapContainerStyle={mapStyles} zoom={10} center={defaultCenter}>
             <Marker position={defaultCenter} />
           </GoogleMap>

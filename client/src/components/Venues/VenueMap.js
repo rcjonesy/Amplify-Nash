@@ -33,7 +33,7 @@ export const VenueMap = ({ isOpen, toggle, venue }) => { // Receive venue data a
                 <ModalBody className='bg-neutral-800'>
 
 
-                    <LoadScript googleMapsApiKey="AIzaSyC40LSG_eBPlG_7VWYDfHKJbRAGLSXd8G4">
+                    <LoadScript googleMapsApiKey="">
                         <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
                             <Marker position={defaultCenter} />
                         </GoogleMap>
