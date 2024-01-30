@@ -1,57 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
-export const VenueMap = ({ isOpen, toggle, venue }) => { // Receive venue data as props
+export const VenueMap = ({ isOpen, toggle, venue }) => {
 
-    const [modal, setModal] = useState(isOpen); // Set initial modal state to isOpen prop
+    const [modal, setModal] = useState(isOpen);
+    const [center, setCenter] = useState(null);
+
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: "AIzaSyC40LSG_eBPlG_7VWYDfHKJbRAGLSXd8G4"
+    });
 
     const mapStyles = {
-        height: "100vh",
+        height: "80vh",
         width: "100%",
-        borderRadius: "8px",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        
     };
-
-    const defaultCenter = {
-        lat: 36.15161,
-        lng: -86.80422,
-    };
-
-
+    
 
 
     const closeModal = () => {
-        setModal(false); // Close the modal when requested
-        toggle(); // Call the toggle function to update the state in the parent component
+        setModal(false);
+        toggle();
     };
+
+    const handleGeo = () => {
+        if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
+
+            return;
+        }
+
+        const geocoder = new window.google.maps.Geocoder();
+
+        geocoder.geocode({ address: venue.address }, (results, status) => {
+            if (status === "OK" && results.length > 0) {
+                const { lat, lng } = results[0].geometry.location;
+                setCenter({ lat: lat(), lng: lng() });
+            }
+        });
+    }
+
+
+
+
+    useEffect(() => {
+        if (isLoaded) {
+            handleGeo();
+        }
+    }, [isLoaded, venue.address]);
+
+    if (loadError) {
+        return <div>Error loading Google Maps: {loadError}</div>;
+    }
+
+    if (!isLoaded) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
-            <Modal isOpen={modal} toggle={closeModal} size='lg'> {/* Use local modal state */}
-                <ModalHeader className='bg-slate-100' toggle={closeModal}>{venue.name}</ModalHeader> {/* Render venue name in the header */}
-                <ModalBody className='bg-neutral-800'>
+            <Modal isOpen={modal} toggle={closeModal} size='lg'>
+                <ModalHeader className='bg-slate-100' toggle={closeModal}>{venue.name}</ModalHeader>
+                <ModalBody className='bg-slate-100'>
 
 
-                    <LoadScript googleMapsApiKey="">
-                        <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
-                            <Marker position={defaultCenter} />
-                        </GoogleMap>
-                    </LoadScript>
+
+                    <GoogleMap
+                        mapContainerStyle={mapStyles}
+                        zoom={13} center={center}
+                        // options={{styles: nightModeMapStyles}}
+                    >
+                        {center && <Marker position={center} />}
+                    </GoogleMap>
+
 
                 </ModalBody>
-                <ModalFooter>
-                    {/* <Button color="primary" onClick={closeModal}>
-                        Do Something
-                    </Button>{' '}
-                    <Button color="secondary" onClick={closeModal}>
-                        Cancel
-                    </Button> */}
-                </ModalFooter>
+                {/* <ModalFooter> */}
+
+                {/* </ModalFooter> */}
             </Modal>
         </div>
     );
 };
-
-
-

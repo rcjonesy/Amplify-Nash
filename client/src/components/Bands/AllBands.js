@@ -41,7 +41,7 @@ export const AllBands = () => {
             <div className="flex flex-wrap justify-center">
               {allBands.map((band) => (
                 <div key={band.id} className="relative w-1/5 p-8 mb-4 mt-10 ml-4 mr-4 hover:scale-105 transition">
-                  <div className="bg-gray-50 shadow-lg relative">
+                  <div className="bg-gray-50 shadow-lg relative rounded-md">
                     <div className="absolute top-0 right-0 p-3">
                       <BandDetails bandObj={band} />
                     </div>
@@ -49,7 +49,7 @@ export const AllBands = () => {
                       <img
                         alt="Sample"
                         src={band.img}
-                        className="max-w-full h-auto rounded-full"
+                        className="max-w-full h-auto"
                       />
                       <div className="p-3">
                         <div className="text-lg font-semibold">{band.name}</div>

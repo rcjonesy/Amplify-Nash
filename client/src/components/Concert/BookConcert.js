@@ -110,22 +110,26 @@ export const BookConcert = () => {
 
 
     const handleSubmit = (event, concertObj) => {
-        
+
         event.preventDefault()
         postNewConcert(concertObj).then(() => {
             navigate("/")
         })
     }
 
-  
+    const handleCancelClick = (event) => {
+        navigate('/')
+    }
+
+
 
     return (
 
 
         <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-center">
-        {/* Use flexbox utilities to center the form vertically and horizontally */}
-        <div className="max-w-xl w-full p-6 bg-white rounded-md shadow-md">
-            <h2 className="text-2xl font-semibold mb-6">Book Concert</h2>
+
+            <div className="max-w-xl w-full p-6 bg-white rounded-md shadow-md">
+                <h2 className="text-2xl font-semibold mb-6">Book Concert</h2>
                 <form className="">
 
                     <div className="mb-4 relative">
@@ -165,6 +169,7 @@ export const BookConcert = () => {
                             // value={newConcert?.id || ''}
                             onChange={venueSelect}
                         >
+                            <option value="0">Choose a venue</option>
                             {venues.map((venue) => (
                                 <option key={venue.id} value={venue.id}>
                                     {venue.name}
@@ -185,6 +190,7 @@ export const BookConcert = () => {
                             onChange={headlinerSelect}
 
                         >
+                            <option value="0">Choose a band</option>
                             {headliners.map((headliner) => (
                                 <option key={headliner.id} value={headliner.id}>
                                     {headliner.name}
@@ -221,17 +227,17 @@ export const BookConcert = () => {
                         Submit
                     </button>
 
-                    {/* <button
-                        type="submit"
+                    <button
+
                         className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded ml-5"
-                        onClick={navigate('/')}
+                        onClick={handleCancelClick}
                     >
                         Cancel
-                    </button> */}
+                    </button>
                 </form>
             </div>
         </div>
-        
+
     );
 
 }

@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { getAllVenues, deleteVenue } from "../../managers/VenueManager";
 import { AddVenue } from "./AddVenue";
 import { VenueMap } from "./VenueMap";
-import { SlPin } from "react-icons/sl";
+
 
 
 
@@ -67,7 +67,7 @@ export const VenueList = () => {
                                             onClick={() => handleClickVenue(venue)}
                                         >
                                             {venue.address}  
-                                            <img src="https://a.slack-edge.com/production-standard-emoji-assets/14.0/google-large/1f4cc@2x.png" alt="Map Pin" className="w-6 h-6 ml-4" />
+                                            <img src="./map-icon.png" alt="Map Pin" className="w-6 h-6 ml-4" />
                                         </td>
                                         <td className="px-6 py-4 text-lg text-center">{venue.phoneNumber}</td>
                                         <td className="px-6 py-4 text-lg text-center">{venue.capacity}</td>

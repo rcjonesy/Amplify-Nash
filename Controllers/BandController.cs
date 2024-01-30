@@ -122,6 +122,7 @@ public class BandController : ControllerBase
             Bio = band.Bio,
             Genre = band.Genre,
             IsHeadliner = band.IsHeadliner,
+            Img = band.Img,
             BandConcerts = band.BandConcerts.Select(bandConcert => new BandConcertDTO
             {
                 Id = bandConcert.Id,

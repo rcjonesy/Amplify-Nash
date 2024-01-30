@@ -136,8 +136,9 @@ export const AddBand = () => {
 
     return (
         <div className="flex items-center justify-center h-screen bg-gradient-to-br from-neutral-950 to-neutral-900">
-            
+
             <form className="p-10 max-w-xl b-full border bg-white rounded-md">
+                <h2 className="text-2xl font-semibold mb-6">New Band</h2>
                 <div className="mb-4 pt-3">
                     <label className="block text-gray-600 ">Band Name</label>
                     <input
@@ -185,7 +186,7 @@ export const AddBand = () => {
 
                 <button
                     type="button"
-                    className="bg-black hover:bg-blue-700 text-white py-1 px-1 rounded mb-5"
+                    className="bg-gray-500 hover:bg-blue-700 text-white py-1 px-1 rounded mb-4 mt-3"
                     onClick={addMember}
                 >
                     Add Member
@@ -203,22 +204,22 @@ export const AddBand = () => {
                         <span className="ms-3 text-sm font-medium text-gray-900 dark:text-black">Headliner?</span>
                     </label>
                 </div>
-                
-                    <button
-                        type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
-                        onClick={sendToDatabase}
-                    >
-                        Submit
-                    </button>
 
-                    <button
-                        className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded ml-5"
-                        onClick={handleCancel}
-                    >
-                        Cancel
-                    </button>
-                
+                <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+                    onClick={sendToDatabase}
+                >
+                    Submit
+                </button>
+
+                <button
+                    className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded ml-5"
+                    onClick={handleCancel}
+                >
+                    Cancel
+                </button>
+
             </form>
         </div>
     );

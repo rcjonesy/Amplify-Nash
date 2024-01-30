@@ -20,7 +20,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
     return (
         <div>
-            <Navbar fixed="true" expand="lg" className="bg-neutral-950 text-white border-b-2">
+            <Navbar fixed="true" expand="lg" className="bg-gradient-to-br from-neutral-950 to-neutral-900 text-white border-b-[.03rem] h-[15rem]">
                 <NavbarBrand tag={RRNavLink} className="text-white" to="/">
                     <img src="./logoo.png" alt="Amplify Nash Logo" className=" ml-20 mr-20 mt-0 h-[17rem]" />
 
@@ -72,7 +72,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                                         setOpen(false);
                                     });
                                 }}
-                                className="text-white font-bold py-2 px-4 rounded inline-block mt-3 mr-4 cursor-pointer hover:underline" // Adjust padding, text size, and margin
+                                className="text-white font-bold py-2 px-3 rounded inline-block mt-3 mr-4 cursor-pointer hover:underline" // Adjust padding, text size, and margin
                             >
                                 Logout
                             </NavLink>

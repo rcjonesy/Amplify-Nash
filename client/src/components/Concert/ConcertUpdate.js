@@ -72,7 +72,7 @@ export const ConcertUpdate = () => {
         // Find the bandConcert corresponding to the current headliner
         const currentHeadlinerBandObj = concert?.bandConcerts?.find(bc => bc.band.isHeadliner === true);
 
-        if (currentHeadlinerBandObj.bandId !== selectedHeadlinerId) {
+        if (currentHeadlinerBandObj?.bandId !== selectedHeadlinerId) {
             // Update the bandId of the current headliner directly
             currentHeadlinerBandObj.bandId = selectedHeadlinerId;
 
