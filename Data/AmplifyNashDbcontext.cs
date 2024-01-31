@@ -44,7 +44,7 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
         //IdentityUserRole - a many-to-many table between roles and users. These define which users have which roles.
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
         {
-            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
+            RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", 
             UserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f"
         });
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile

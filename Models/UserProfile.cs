@@ -11,4 +11,6 @@ public class UserProfile
 
     public string IdentityUserId { get; set; }
     public IdentityUser IdentityUser { get; set; }
-}
+//     public List<InterestedConcert>? InterestedConcerts { get; set; }
+//     public List<LikeBand>? LikdBands { get; set; }
+ }

@@ -17,6 +17,8 @@ public class UserProfileDTO
     public string IdentityUserId { get; set; }
 
     public IdentityUser IdentityUser { get; set; }
+    //  public List<InterestedConcertDTO>? InterestedConcerts { get; set; }
+    // public List<LikeBandDTO>? LikdBands { get; set; }
 
    
 }

@@ -20,7 +20,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
     return (
         <div>
-            <Navbar fixed="true" expand="lg" className="bg-gradient-to-br from-neutral-950 to-neutral-900 text-white border-b-[.03rem] h-[15rem]">
+            <Navbar fixed="true" expand="lg" className="bg-gradient-to-br from-neutral-950 to-neutral-800 text-white border-b-[.1em] h-[13rem] border-gray-500">
                 <NavbarBrand tag={RRNavLink} className="text-white" to="/">
                     <img src="./logoo.png" alt="Amplify Nash Logo" className=" ml-20 mr-20 mt-0 h-[17rem]" />
 

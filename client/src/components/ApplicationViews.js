@@ -7,7 +7,6 @@ import { ConcertUpdate } from "./Concert/ConcertUpdate";
 import { VenueList } from "./Venues/VenueList";
 import { BookConcert } from "./Concert/BookConcert";
 import { AllBands } from "./Bands/AllBands";
-import { BandDetails } from "./Bands/BandDetails";
 import { AddBand } from "./Bands/AddBand";
 
 
@@ -41,7 +40,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
       <Route
         path="/newconcert"
         element={
-          <AuthorizedRoute loggedInUser={loggedInUser}>
+          <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
             <BookConcert />
           </AuthorizedRoute>
         }
@@ -57,7 +56,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
       <Route
         path="/addband"
         element={
-          <AuthorizedRoute loggedInUser={loggedInUser}>
+          <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
             <AddBand />
           </AuthorizedRoute>
         }
