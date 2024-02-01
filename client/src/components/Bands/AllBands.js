@@ -8,7 +8,7 @@ import { MoonLoader } from "react-spinners";
 
 
 
-export const AllBands = () => {
+export const AllBands = ({ loggedInUser }) => {
 
     
 

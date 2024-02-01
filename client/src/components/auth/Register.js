@@ -43,12 +43,13 @@ export default function Register({ setLoggedInUser }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-start" style={{backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-      <div className="p-10 mt-20 border bg-white rounded-md shadow-md max-w-lg w-full">
-        <h3>Sign Up</h3>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-start" style={{ backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="p-10 mt-20 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-md shadow-md max-w-md w-full opacity-95">
+        <h3 className="text-white">Sign Up</h3>
         <FormGroup>
-          <Label>First Name</Label>
+          <Label className="text-white">First Name</Label>
           <Input
+            className="hover:bg-slate-200"
             type="text"
             value={firstName}
             onChange={(e) => {
@@ -57,18 +58,22 @@ export default function Register({ setLoggedInUser }) {
           />
         </FormGroup>
         <FormGroup>
-          <Label>Last Name</Label>
+
+          <Label className="text-white">Last Name</Label>
           <Input
+            className="hover:bg-slate-200"
             type="text"
             value={lastName}
             onChange={(e) => {
               setLastName(e.target.value);
             }}
           />
+
         </FormGroup>
         <FormGroup>
-          <Label>Email</Label>
+          <Label className="text-white">Email</Label>
           <Input
+            className="hover:bg-slate-200"
             type="email"
             value={email}
             onChange={(e) => {
@@ -76,29 +81,35 @@ export default function Register({ setLoggedInUser }) {
             }}
           />
         </FormGroup>
+
         <FormGroup>
-          <Label>User Name</Label>
+          <Label className="text-white" >User Name</Label>
           <Input
+            className="hover:bg-slate-200"
             type="text"
             value={userName}
             onChange={(e) => {
               setUserName(e.target.value);
             }}
           />
+
         </FormGroup>
         <FormGroup>
-          <Label>Address</Label>
+          <Label className="text-white">Address</Label>
           <Input
+            className="hover:bg-slate-200"
             type="text"
             value={address}
             onChange={(e) => {
               setAddress(e.target.value);
             }}
           />
+
         </FormGroup>
         <FormGroup>
-          <Label>Password</Label>
+          <Label className="text-white">Password</Label>
           <Input
+            className="hover:bg-slate-200"
             invalid={passwordMismatch}
             type="password"
             value={password}
@@ -108,9 +119,11 @@ export default function Register({ setLoggedInUser }) {
             }}
           />
         </FormGroup>
+
         <FormGroup>
-          <Label> Confirm Password</Label>
+          <Label className="text-white"> Confirm Password</Label>
           <Input
+            className="hover:bg-slate-200"
             invalid={passwordMismatch}
             type="password"
             value={confirmPassword}
@@ -128,11 +141,12 @@ export default function Register({ setLoggedInUser }) {
           color="primary"
           onClick={handleSubmit}
           disabled={passwordMismatch}
+          className="mt-2 mb-3 mx-auto block"
         >
           Register
         </Button>
-        <p>
-          Already signed up? Log in <Link to="/login">here</Link>
+        <p className="text-white">
+          Already signed up? Log in <Link to="/login" className="text-white">here</Link>
         </p>
       </div>
     </div>

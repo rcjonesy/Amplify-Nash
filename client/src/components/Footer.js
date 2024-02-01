@@ -1,5 +1,5 @@
 import { SocialIcon } from 'react-social-icons'
-import { TfiEmail } from "react-icons/tfi";
+
 
 
 export const Footer = () => {

@@ -33,7 +33,15 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                         <Nav className="mr-auto flex items-center">
     <NavItem>
         <NavLink tag={RRNavLink} className="text-white hover:underline text-xl" to="/venues">
-            Venue Info
+            Venue List
+        </NavLink>
+    </NavItem>
+    <NavItem>
+        <span className="text-white mx-2 text-xl">|</span>
+    </NavItem>
+    <NavItem>
+        <NavLink tag={RRNavLink} className="text-white hover:underline text-xl" to="/bigmap">
+            Venue Map
         </NavLink>
     </NavItem>
     <NavItem>

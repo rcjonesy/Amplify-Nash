@@ -49,49 +49,54 @@ export const AddVenue = ({ handleVenues }) => {
             Add Venue
             </Button>
             <Modal isOpen={modal} toggle={toggle} className="modal-dialog-centered">
-                <ModalHeader toggle={toggle}>Add Venue</ModalHeader>
-                <ModalBody>
-                    <form onSubmit={handleSubmit}>
+                {/* <ModalHeader toggle={toggle} className='bg-gradient-to-br from-neutral-800 to-neutral-700 text-white'>Add Venue</ModalHeader> */}
+                <ModalBody className='bg-gradient-to-br from-neutral-700 to-neutral-700'>
+                    <form onSubmit={handleSubmit} className='max-w-md mx-auto'>
+                        <p className='text-white text-xl'>Add Venue</p>
                         <div className="mb-4">
-                            <label className="block text-gray-600">Name</label>
+                            <label className="block text-white">Name</label>
                             <input
                                 type="text"
                                 className="mt-1 p-2 w-full border rounded-md"
                                 required
                                 value={venue.name || ""}
+                                placeholder='Name'
                                 onChange={handleVenueName}
                             />
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-600">Address</label>
+                            <label className="block text-white">Address</label>
                             <input
                                 type="text"
                                 className="mt-1 p-2 w-full border rounded-md"
                                 required
                                 value={venue.address || ""}
+                                placeholder='Address'
                                 onChange={handleVenueAddress}
                             />
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-600">Phone Number</label>
+                            <label className="block text-white">Phone Number</label>
                             <input
                                 type="text"
                                 className="mt-1 p-2 w-full border rounded-md"
                                 required
                                 value={venue.phoneNumber || ""}
+                                placeholder='Phone Number'
                                 onChange={handlePhoneNumber}
                             />
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-600">Capacity</label>
+                            <label className="block text-white">Capacity</label>
                             <input
                                 type="text"
                                 className="mt-1 p-2 w-full border rounded-md"
                                 required
                                 value={venue.capacity || ""}
+                                placeholder='Capacity'
                                 onChange={handleCapacity}
                             />
                         </div>
@@ -104,9 +109,9 @@ export const AddVenue = ({ handleVenues }) => {
                         </button>
                     </form>
                 </ModalBody>
-                <ModalFooter>
+                {/* <ModalFooter>
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
+                </ModalFooter> */}
             </Modal>
         </div>
     );

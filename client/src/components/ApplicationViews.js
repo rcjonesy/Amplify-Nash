@@ -8,16 +8,20 @@ import { VenueList } from "./Venues/VenueList";
 import { BookConcert } from "./Concert/BookConcert";
 import { AllBands } from "./Bands/AllBands";
 import { AddBand } from "./Bands/AddBand";
+import { BigMap } from "./Venues/Map";
+
+
 
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
+
   return (
     <Routes>
       <Route
         path="/"
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
-            <Home />
+            <Home loggedInUser={loggedInUser} />
           </AuthorizedRoute>
         }
       />
@@ -61,7 +65,19 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           </AuthorizedRoute>
         }
       />
-        
+
+      <Route
+        path="/bigmap"
+        element={
+          <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
+            <BigMap />
+          </AuthorizedRoute>
+        }
+      />
+
+
+
+
       <Route
         path="login"
         element={<Login setLoggedInUser={setLoggedInUser} />}

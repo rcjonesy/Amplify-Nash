@@ -22,13 +22,14 @@ export default function Login({ setLoggedInUser }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-start" style={{backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-      <div className="p-10 mt-20 border bg-white rounded-md shadow-md max-w-md w-full">
-        <h3 className="text-2xl mb-5 text-center font-bold">Login</h3>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-start" style={{ backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="p-10 mt-20 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-md shadow-md max-w-md w-full opacity-95">
+        <h3 className="text-2xl mb-5 text-center font-bold text-white">Login</h3>
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label>Email</Label>
+            <Label className="text-white">Email</Label>
             <Input
+              className="hover:bg-slate-200"
               invalid={failedLogin}
               type="text"
               value={email}
@@ -39,8 +40,9 @@ export default function Login({ setLoggedInUser }) {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Password</Label>
+            <Label className="text-white">Password</Label>
             <Input
+              className="hover:bg-blue-200"
               invalid={failedLogin}
               type="password"
               value={password}
@@ -56,8 +58,8 @@ export default function Login({ setLoggedInUser }) {
             Login
           </Button>
         </form>
-        <p className="mt-3 text-center">
-          Not signed up? <Link to="/register">Register here</Link>
+        <p className="mt-3 text-center text-white">
+          Not signed up? <Link to="/register" className="text-white">Register here</Link>
         </p>
       </div>
     </div>

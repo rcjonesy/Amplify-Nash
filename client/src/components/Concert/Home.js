@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Table, Badge } from "reactstrap";
+import { Button } from "reactstrap";
 import { getAllConcerts, deleteConcert } from "../../managers/ConcertManager";
 import { FcHighPriority } from "react-icons/fc";
 import { FcCheckmark } from "react-icons/fc";
 
 
-// import "../../background.css";
 
-export const Home = () => {
+
+export const Home = ({ loggedInUser }) => {
     const [concerts, setConcerts] = useState([]);
     const [filteredConcerts, setFilteredConcerts] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
@@ -17,7 +17,8 @@ export const Home = () => {
     //================================================================
     // for search filter
 
-
+   
+ 
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value.toLowerCase());
@@ -43,6 +44,7 @@ export const Home = () => {
     }, [searchTerm, concerts])
 
 
+console.log(loggedInUser)
     //================================================================
 
 
@@ -51,6 +53,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
+        
         handleGetConcerts();
 
     }, []);
@@ -64,11 +67,11 @@ export const Home = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 p-4 flex flex-col items-center">
+        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-800 p-4 flex flex-col items-center">
             <div className="flex justify-center w-full px-4">
                 <input
                     type="text"
-                    className="p-2 m-4 border rounded-md"
+                    className="p-2 m-4 rounded-md w-1/6 bg-slate-50"
                     placeholder="Search by venue or artist..."
                     value={searchTerm}
                     onChange={handleSearch}
