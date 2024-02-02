@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AmplifyNash.Migrations
 {
     [DbContext(typeof(AmplifyNashDbContext))]
-    [Migration("20240129190936_InitialCreate")]
+    [Migration("20240131193429_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -763,6 +763,58 @@ namespace AmplifyNash.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AmplifyNash.Models.ConcertInterest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ConcertId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserProfileId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConcertId");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("ConcertInterests");
+                });
+
+            modelBuilder.Entity("AmplifyNash.Models.LikedBand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BandId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserProfileId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BandId");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("LikedBands");
+                });
+
             modelBuilder.Entity("AmplifyNash.Models.UserProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -958,7 +1010,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "e34d7e30-bc6a-4ecc-8f3b-cebb8ec8bc26",
+                            ConcurrencyStamp = "3892436b-adc6-490d-b6ed-ae214ebe1ac6",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1057,13 +1109,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e250d8dc-c7d0-43fa-96db-caf18cbc0905",
+                            ConcurrencyStamp = "c39e071f-206d-41a9-81d7-f7e4d308d32e",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAENbuWELxhXiMgj6mkSuMLwq0MstalSyugSK3EWiSB2g6fElKrpG0jst6+d+iEokQPw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFvXCQKa/nI5Ve9TKIXCQVffvpu2QvJox44c2zkq07iUhYbOxTjjF4AkMMCvwkiMRQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fad4a834-6788-475e-97f0-d6231cc7da76",
+                            SecurityStamp = "64751409-ee35-4fd2-a7c0-d288db17f366",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -1205,6 +1257,32 @@ namespace AmplifyNash.Migrations
                     b.Navigation("Venue");
                 });
 
+            modelBuilder.Entity("AmplifyNash.Models.ConcertInterest", b =>
+                {
+                    b.HasOne("AmplifyNash.Models.Concert", "Concert")
+                        .WithMany()
+                        .HasForeignKey("ConcertId");
+
+                    b.HasOne("AmplifyNash.Models.UserProfile", null)
+                        .WithMany("ConcertInterests")
+                        .HasForeignKey("UserProfileId");
+
+                    b.Navigation("Concert");
+                });
+
+            modelBuilder.Entity("AmplifyNash.Models.LikedBand", b =>
+                {
+                    b.HasOne("AmplifyNash.Models.Band", "Band")
+                        .WithMany()
+                        .HasForeignKey("BandId");
+
+                    b.HasOne("AmplifyNash.Models.UserProfile", null)
+                        .WithMany("LikedBands")
+                        .HasForeignKey("UserProfileId");
+
+                    b.Navigation("Band");
+                });
+
             modelBuilder.Entity("AmplifyNash.Models.UserProfile", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
@@ -1286,6 +1364,13 @@ namespace AmplifyNash.Migrations
             modelBuilder.Entity("AmplifyNash.Models.Concert", b =>
                 {
                     b.Navigation("BandConcerts");
+                });
+
+            modelBuilder.Entity("AmplifyNash.Models.UserProfile", b =>
+                {
+                    b.Navigation("ConcertInterests");
+
+                    b.Navigation("LikedBands");
                 });
 #pragma warning restore 612, 618
         }

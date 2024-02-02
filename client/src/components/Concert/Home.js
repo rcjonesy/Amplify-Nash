@@ -71,13 +71,13 @@ console.log(loggedInUser)
             <div className="flex justify-center w-full px-4">
                 <input
                     type="text"
-                    className="p-2 m-4 rounded-md w-1/6 bg-slate-50"
+                    className="p-2 mt-5 mb-4 rounded-md w-1/6 bg-slate-50"
                     placeholder="Search by venue or artist..."
                     value={searchTerm}
                     onChange={handleSearch}
                 />
             </div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-3 w-3/4">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5 w-3/4">
                 <table className="w-full table-auto border-collapse border border-gray-300 rounded-lg">
                     <thead className="text-lg uppercase bg-slate-200">
                         <tr>

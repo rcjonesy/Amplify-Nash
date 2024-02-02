@@ -74,6 +74,7 @@ public class BandController : ControllerBase
         return Ok(_dbContext
             .Bands
             .Include(band => band.BandMembers)
+            .OrderBy(band => band.Name)
 
             .Select(band => new BandDTO
             {
@@ -123,7 +124,9 @@ public class BandController : ControllerBase
             Genre = band.Genre,
             IsHeadliner = band.IsHeadliner,
             Img = band.Img,
-            BandConcerts = band.BandConcerts.Select(bandConcert => new BandConcertDTO
+            BandConcerts = band.BandConcerts
+            .OrderBy(bandConcert => bandConcert.Concert.Date)
+            .Select(bandConcert => new BandConcertDTO
             {
                 Id = bandConcert.Id,
                 ConcertId = bandConcert.ConcertId,

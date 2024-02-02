@@ -22,8 +22,8 @@ export default function Login({ setLoggedInUser }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-start" style={{ backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="p-10 mt-20 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-md shadow-md max-w-md w-full opacity-95">
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-neutral-950 to-neutral-900" style={{ backgroundImage: `url('./bgphoto3.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="p-10 mb-20 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-md shadow-md max-w-md w-full opacity-95">
         <h3 className="text-2xl mb-5 text-center font-bold text-white">Login</h3>
         <form onSubmit={handleSubmit}>
           <FormGroup>

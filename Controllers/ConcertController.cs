@@ -33,11 +33,16 @@ public class ConcertController : ControllerBase
     //Authorize
     public IActionResult Get()
     {
+
+
+        DateTime yesterday = DateTime.Now.AddDays(-1).Date;
+
         return Ok(_dbContext
             .Concerts
               .Include(concert => concert.Venue)
               .Include(concert => concert.BandConcerts)
                     .ThenInclude(bandConcert => bandConcert.Band)
+               .Where(concert => concert.Date > yesterday)
             .OrderBy(concert => concert.Date)
             .Select(concert => new ConcertDTO
             {
@@ -171,7 +176,7 @@ public class ConcertController : ControllerBase
         {
             return NotFound();
         }
-        
+
         // Apply changes directly to the entity fetched from the database
         concertToUpdate.VenueId = incomingConcert.VenueId;
         concertToUpdate.Time = incomingConcert.Time;

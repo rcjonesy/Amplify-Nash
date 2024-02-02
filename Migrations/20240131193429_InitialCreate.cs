@@ -244,6 +244,31 @@ namespace AmplifyNash.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LikedBands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    BandId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true),
+                    UserProfileId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LikedBands", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LikedBands_Bands_BandId",
+                        column: x => x.BandId,
+                        principalTable: "Bands",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_LikedBands_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Concerts",
                 columns: table => new
                 {
@@ -291,15 +316,40 @@ namespace AmplifyNash.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ConcertInterests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ConcertId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true),
+                    UserProfileId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConcertInterests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ConcertInterests_Concerts_ConcertId",
+                        column: x => x.ConcertId,
+                        principalTable: "Concerts",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ConcertInterests_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "e34d7e30-bc6a-4ecc-8f3b-cebb8ec8bc26", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "3892436b-adc6-490d-b6ed-ae214ebe1ac6", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "e250d8dc-c7d0-43fa-96db-caf18cbc0905", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAENbuWELxhXiMgj6mkSuMLwq0MstalSyugSK3EWiSB2g6fElKrpG0jst6+d+iEokQPw==", null, false, "fad4a834-6788-475e-97f0-d6231cc7da76", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "c39e071f-206d-41a9-81d7-f7e4d308d32e", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFvXCQKa/nI5Ve9TKIXCQVffvpu2QvJox44c2zkq07iUhYbOxTjjF4AkMMCvwkiMRQ==", null, false, "64751409-ee35-4fd2-a7c0-d288db17f366", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -502,9 +552,29 @@ namespace AmplifyNash.Migrations
                 column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ConcertInterests_ConcertId",
+                table: "ConcertInterests",
+                column: "ConcertId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ConcertInterests_UserProfileId",
+                table: "ConcertInterests",
+                column: "UserProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Concerts_VenueId",
                 table: "Concerts",
                 column: "VenueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LikedBands_BandId",
+                table: "LikedBands",
+                column: "BandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LikedBands_UserProfileId",
+                table: "LikedBands",
+                column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_IdentityUserId",
@@ -539,6 +609,12 @@ namespace AmplifyNash.Migrations
 
             migrationBuilder.DropTable(
                 name: "BandMembers");
+
+            migrationBuilder.DropTable(
+                name: "ConcertInterests");
+
+            migrationBuilder.DropTable(
+                name: "LikedBands");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

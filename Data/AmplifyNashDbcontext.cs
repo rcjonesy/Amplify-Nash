@@ -15,6 +15,8 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Band> Bands { get; set; }
     public DbSet<BandConcert> BandConcerts { get; set; }
     public DbSet<BandMember> BandMembers { get; set; }
+    public DbSet<LikedBand> LikedBands { get; set; }
+    public DbSet<ConcertInterest> ConcertInterests { get; set; }
 
     public AmplifyNashDbContext(DbContextOptions<AmplifyNashDbContext> context, IConfiguration config) : base(context)
     {
