@@ -59,7 +59,7 @@ export const VenueMap = ({ isOpen, toggle, venue }) => {
 
     return (
         <div>
-            <Modal isOpen={modal} toggle={closeModal} size='lg'>
+            <Modal isOpen={modal} toggle={closeModal} size='lg' style={{ marginTop: "10vh" }} >
                 <ModalHeader className='bg-slate-100' toggle={closeModal}>{venue.name}</ModalHeader>
                 <ModalBody className='bg-slate-100'>
 

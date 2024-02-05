@@ -8,6 +8,7 @@ import { MoonLoader } from "react-spinners";
 
 
 
+
 export const AllBands = ({ loggedInUser }) => {
 
 
@@ -18,9 +19,17 @@ export const AllBands = ({ loggedInUser }) => {
   const [searchTerm, setSearchTerm] = useState("")
 
   const handleGetBands = () => {
-    getAllBandsWithMembers().then(setAllBands)
-    setLoading(false)
-  }
+    setLoading(true); // Set loading to true before starting the API call
+
+    getAllBandsWithMembers()
+      .then((bandsData) => {
+        setAllBands(bandsData);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after the API call is completed (whether it succeeds or fails)
+      });
+  };
+
 
   const handleDeleteBand = (bandId) => {
     deleteBand(bandId)
@@ -48,12 +57,14 @@ export const AllBands = ({ loggedInUser }) => {
   }, [])
 
   return (
-    <div className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen">
+    <div
+      className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen p-4"
+    >
       <div className="flex justify-center w-full px-4">
         <input
           type="text"
           className="p-2 mt-5 mb-4 rounded-md w-1/6 bg-slate-50"
-          placeholder="Search by genre..."
+          placeholder="search by genre..."
           value={searchTerm}
           onChange={handleSearch}
         />

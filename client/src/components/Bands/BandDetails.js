@@ -34,7 +34,7 @@ export const BandDetails = ({ bandObj }) => {
       </div>
       <Modal isOpen={modal} toggle={toggleModal} className="modal-lg">
         {/* <ModalHeader toggle={toggleModal} className="bg-slate-200">{band.name}</ModalHeader> */}
-        <ModalBody className="relative bg-gradient-to-b from-slate-100 to-slate-300 rounded-lg">
+        <ModalBody className="relative bg-gradient-to-b from-slate-100 to-slate-300 rounded-lg transparent">
 
           <div
             className="absolute inset-10 bg-center bg-no-repeat mt-10"

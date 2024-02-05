@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
+
 export const AddBand = () => {
 
     const navigate = useNavigate()
@@ -137,9 +139,9 @@ export const AddBand = () => {
     return (
         <div className="flex items-center justify-center h-screen bg-gradient-to-br from-neutral-950 to-neutral-900">
 
-            <form className="p-10 max-w-xl b-full border bg-white rounded-md">
-                <h2 className="text-2xl font-semibold mb-6">New Band</h2>
-                <div className="mb-4 pt-3">
+            <form className="p-5 max-w-xl b-full border bg-white transparent rounded-md">
+                
+                <div className="mb-4">
                     <label className="block text-gray-600 ">Band Name</label>
                     <input
                         placeholder="band name"

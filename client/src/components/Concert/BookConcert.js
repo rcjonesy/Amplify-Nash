@@ -2,13 +2,7 @@ import { getAllVenues } from "../../managers/VenueManager";
 import { getHeadliningBands, getSupportingBands } from "../../managers/BandManager";
 import { postNewConcert } from "../../managers/ConcertManager";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-// import "../../background.css";
-
-
-
-
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,7 +12,7 @@ export const BookConcert = () => {
 
     const navigate = useNavigate()
 
-    const [date, setDate] = useState(new Date());
+    // const [date, setDate] = useState(new Date());
 
     const [newConcert, setNewConcert] = useState({
         date: "",
@@ -80,11 +74,6 @@ export const BookConcert = () => {
 
 
 
-
-
-
-
-
     const handleSupportingCheck = (event) => {
         // Extracting bandId and isChecked from the event
         const bandId = event.target.value;
@@ -126,9 +115,11 @@ export const BookConcert = () => {
     return (
 
 
-        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 flex justify-center items-center">
+        <div className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen flex justify-center items-center">
+            <div
 
-            <div className="max-w-xl w-full p-6 bg-white rounded-md shadow-md">
+                className="max-w-xl w-full p-6 bg-white rounded-md shadow-md"
+            >
                 <h2 className="text-2xl font-semibold mb-6">Book Concert</h2>
                 <form className="">
 
@@ -218,7 +209,7 @@ export const BookConcert = () => {
                         </div>
                     </div>
 
-                    {/* Submit Button */}
+
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"

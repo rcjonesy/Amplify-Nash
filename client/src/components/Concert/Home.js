@@ -8,17 +8,20 @@ import { FcCheckmark } from "react-icons/fc";
 
 
 
+
+
 export const Home = ({ loggedInUser }) => {
     const [concerts, setConcerts] = useState([]);
     const [filteredConcerts, setFilteredConcerts] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate();
 
+
     //================================================================
     // for search filter
 
-   
- 
+
+
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value.toLowerCase());
@@ -44,7 +47,7 @@ export const Home = ({ loggedInUser }) => {
     }, [searchTerm, concerts])
 
 
-console.log(loggedInUser)
+
     //================================================================
 
 
@@ -53,8 +56,9 @@ console.log(loggedInUser)
     };
 
     useEffect(() => {
-        
+
         handleGetConcerts();
+
 
     }, []);
 
@@ -67,7 +71,9 @@ console.log(loggedInUser)
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-800 p-4 flex flex-col items-center">
+        <div
+            className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-800 p-4 flex flex-col items-center"
+        >
             <div className="flex justify-center w-full px-4">
                 <input
                     type="text"

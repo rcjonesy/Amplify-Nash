@@ -9,6 +9,7 @@ import { VenueMap } from "./VenueMap";
 
 
 
+
 export const VenueList = () => {
 
     const [venues, setVenues] = useState([]);
@@ -54,7 +55,8 @@ export const VenueList = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 p-4 flex flex-col items-center">
+        <div
+            className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 p-4 flex flex-col items-center">
             <div className="flex justify-center w-full px-4">
                 <input
                     type="text"
