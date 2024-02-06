@@ -35,6 +35,7 @@ public class VenueController : ControllerBase
     {
         return Ok(_dbContext
             .Venues
+            .OrderBy(venue => venue.Name.Replace("The ", ""))
             .Select(venue => new VenueDTO
             {
                 Id = venue.Id,

@@ -12,11 +12,12 @@ using System.Linq.Expressions;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Design.Internal;
 using System.Reflection.Metadata.Ecma335;
 
-
 namespace AmplifyNash.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+//The constructor ensures that the object is in a valid state right from the moment it's created.
+//The constructor is responsible for setting the initial state of an object when it is created.
 public class ConcertController : ControllerBase
 {
     private AmplifyNashDbContext _dbContext;

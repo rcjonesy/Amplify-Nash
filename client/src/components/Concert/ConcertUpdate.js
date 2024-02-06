@@ -67,18 +67,34 @@ export const ConcertUpdate = () => {
 
 
     const handleHeadliner = (event) => {
+
         const selectedHeadlinerId = event.target.value * 1;
 
-        // Find the bandConcert corresponding to the current headliner
-        const currentHeadlinerBandObj = concert?.bandConcerts?.find(bc => bc.band.isHeadliner === true);
+        // Find the bandConcert object where the isHeadliner is true in the concert object
+        let currentHeadlinerBandObj = concert?.bandConcerts?.find(bc => bc.band.isHeadliner === true);
 
-        if (currentHeadlinerBandObj?.bandId !== selectedHeadlinerId) {
+        if (currentHeadlinerBandObj === undefined) {
+            currentHeadlinerBandObj = { bandId: selectedHeadlinerId }
+            const copy = { ...concert }
+            copy.bandConcerts.push(
+                {
+                    bandId: selectedHeadlinerId,
+                    band: {
+                        isHeadliner: true
+                    }
+                })
+            
+            setConcert(copy)
+        } else if (currentHeadlinerBandObj?.bandId !== selectedHeadlinerId) {
+
+
             // Update the bandId of the current headliner directly
             currentHeadlinerBandObj.bandId = selectedHeadlinerId;
-
             // Update the concert state with the modified bandConcerts array
             setConcert({ ...concert, bandConcerts: [...concert.bandConcerts] });
+
         }
+
     };
 
     const handleCheckboxes = (event) => {
@@ -160,7 +176,7 @@ export const ConcertUpdate = () => {
                         />
                     </div>
 
-                    {/* Venue Select */}
+
                     <div className="mb-4">
                         <label className="block text-gray-600">Venue</label>
                         <select
@@ -179,17 +195,18 @@ export const ConcertUpdate = () => {
                     </div>
 
 
-                    {/* Headlining Band Select */}
+
                     <div className="mb-4">
                         <label className="block text-gray-600">Headlining Band</label>
                         <select
                             name="headliningBand"
                             className="mt-1 p-2 w-full border rounded-md"
                             placeholder="Select Headlining Band"
-                            value={concert?.bandConcerts?.find(bc => bc.band.isHeadliner)?.bandId}
+                            value={concert?.bandConcerts?.find(bc => bc?.band?.isHeadliner)?.bandId || 0}
                             onChange={handleHeadliner}
 
                         >
+                            <option value="0">Choose a band</option>
                             {headliningBands.map((headliner) => (
                                 <option key={headliner.id} value={headliner.id}>
                                     {headliner.name}

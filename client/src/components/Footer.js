@@ -10,16 +10,16 @@ export const Footer = () => {
             <ul className="flex items-center justify-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0 mr-3">
 
                 <li className='mt-3 mr-4'>
-                    <SocialIcon url="www.facebook.com" />
+                    <SocialIcon url="https://www.facebook.com" />
                 </li>
                 <li className='mt-3 mr-4'>
-                    <SocialIcon url="www.instagram.com" />
+                    <SocialIcon url="https://www.instagram.com" />
                 </li>
                 <li className='mt-3 mr-4'>
-                    <SocialIcon url="www.x.com" />
+                    <SocialIcon url="https://www.x.com" />
                 </li>
                 <li className='mt-3 mr-4'>
-                    <SocialIcon url="www.email.com" />
+                    <SocialIcon url="https://www.email.com" />
                 </li>
             </ul>
         </footer>

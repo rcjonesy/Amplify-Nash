@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { newVenue } from "../../managers/VenueManager";
 import PropTypes from 'prop-types';
-import { FaPlus } from "react-icons/fa";
+
 
 export const AddVenue = ({ handleVenues }) => {
     const [venue, setVenue] = useState({});
@@ -49,7 +49,7 @@ export const AddVenue = ({ handleVenues }) => {
             Add Venue
             </Button>
             <Modal isOpen={modal} toggle={toggle} className="modal-dialog-centered">
-                {/* <ModalHeader toggle={toggle} className='bg-gradient-to-br from-neutral-800 to-neutral-700 text-white'>Add Venue</ModalHeader> */}
+                
                 <ModalBody className='bg-gradient-to-br from-neutral-700 to-neutral-700'>
                     <form onSubmit={handleSubmit} className='max-w-md mx-auto'>
                         <p className='text-white text-xl'>Add Venue</p>

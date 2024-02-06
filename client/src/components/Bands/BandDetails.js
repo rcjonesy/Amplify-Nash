@@ -1,6 +1,5 @@
 import { getBandById } from "../../managers/BandManager";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import { FaEllipsisH } from "react-icons/fa";
 
@@ -78,7 +77,7 @@ export const BandDetails = ({ bandObj }) => {
                 <p className="text-lg text-gray-800 mb-4">No band members available</p>
               )}
 
-              {/* Upcoming Schedule */}
+             
               <div>
                 <p className="text-lg mb-2"><span className="font-semibold text-xl text-blue-500">Upcoming Schedule:</span></p>
                 {band.bandConcerts && band.bandConcerts.length > 0 ? (

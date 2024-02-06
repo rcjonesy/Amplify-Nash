@@ -101,6 +101,13 @@ export const BookConcert = () => {
     const handleSubmit = (event, concertObj) => {
 
         event.preventDefault()
+
+        if (concertObj.date.trim() === "" || concertObj.time.trim() === "") {
+            // If either date or time is empty, display an error message or handle it accordingly
+            alert("Please fill in both date and time.");
+            return;
+        }
+        
         postNewConcert(concertObj).then(() => {
             navigate("/")
         })
@@ -150,7 +157,7 @@ export const BookConcert = () => {
                         />
                     </div>
 
-                    {/* Venue Select */}
+                    
                     <div className="mb-4">
                         <label className="block text-gray-600">Venue</label>
                         <select
@@ -170,7 +177,7 @@ export const BookConcert = () => {
                     </div>
 
 
-                    {/* Headlining Band Select */}
+                    
                     <div className="mb-4">
                         <label className="block text-gray-600">Headlining Band</label>
                         <select
