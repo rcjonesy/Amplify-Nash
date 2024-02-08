@@ -10,11 +10,7 @@ import { AllBands } from "./Bands/AllBands";
 import { AddBand } from "./Bands/AddBand";
 import { BigMap } from "./Venues/Map";
 
-
-
-
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
-
   return (
     <Routes>
       <Route
@@ -74,9 +70,6 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           </AuthorizedRoute>
         }
       />
-
-
-
 
       <Route
         path="login"

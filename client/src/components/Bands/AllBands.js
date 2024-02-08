@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react"
-import { getAllBandsWithMembers, deleteBand } from "../../managers/BandManager"
+import { useEffect, useState } from "react";
+import { getAllBandsWithMembers, deleteBand } from "../../managers/BandManager";
 import { MdDelete } from "react-icons/md";
-import { BandDetails } from "./BandDetails"
+import { BandDetails } from "./BandDetails";
 import { MoonLoader } from "react-spinners";
 
-
-
-
-
-
 export const AllBands = ({ loggedInUser }) => {
+  const [allBands, setAllBands] = useState([]);
+  const [filteredBands, setFilteredBands] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
-
-
-  const [allBands, setAllBands] = useState([])
-  const [filteredBands, setFilteredBands] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState("")
+  
 
   const handleGetBands = () => {
     setLoading(true); // Set loading to true before starting the API call
@@ -30,36 +24,29 @@ export const AllBands = ({ loggedInUser }) => {
       });
   };
 
-
   const handleDeleteBand = (bandId) => {
-    deleteBand(bandId)
-      .then(() => {
-        handleGetBands();
-      })
+    deleteBand(bandId).then(() => {
+      handleGetBands();
+    });
   };
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value)
-  }
-
-  useEffect(
-    () => {
-      const genreFilter = allBands.filter(band =>
-        band.genre.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredBands(genreFilter);
-    },
-    [allBands, searchTerm]
-  );
+    setSearchTerm(event.target.value);
+  };
 
   useEffect(() => {
-    handleGetBands()
-  }, [])
+    handleGetBands();
+  }, []);
+
+  useEffect(() => {
+    const genreFilter = allBands.filter((band) =>
+      band.genre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredBands(genreFilter);
+  }, [allBands, searchTerm]);
 
   return (
-    <div
-      className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen p-4"
-    >
+    <div className="bg-gradient-to-br from-neutral-950 to-neutral-900 min-h-screen p-4">
       <div className="flex justify-center w-full px-4">
         <input
           type="text"
@@ -70,13 +57,20 @@ export const AllBands = ({ loggedInUser }) => {
         />
       </div>
       {loading ? (
-        <div className="flex justify-center items-center min-h-screen">
-          <MoonLoader color="#FFFFFF" size={50} />
+        <div className="flex justify-center items-center min-h-screen absolute top-0 left-0 w-full h-full bg-gradient-to-br from-neutral-950 to-neutral-900">
+          <MoonLoader
+            color="#00BFFF"
+            size={50}
+            className="inline-block animate-spin"
+            style={{ animationDuration: "2s" }}
+          />
         </div>
       ) : (
         <div className="flex flex-wrap justify-center">
           {filteredBands.map((band) => (
-            <div key={band.id} className="relative w-1/5 p-8 mb-4 mt-10 ml-4 mr-4 hover:scale-105 transition">
+            <div
+              key={band.id}
+              className="relative w-1/5 p-8 mb-4 mt-10 ml-4 mr-4 hover:scale-105 transition">
               <div className="bg-gray-50 shadow-lg relative rounded-md">
                 <div className="absolute top-0 right-0 p-3">
                   <BandDetails bandObj={band} />
@@ -94,8 +88,7 @@ export const AllBands = ({ loggedInUser }) => {
                 <div className="absolute bottom-0 right-0 p-3">
                   <div
                     className="text-red-500 text-2xl cursor-pointer"
-                    onClick={() => handleDeleteBand(band.id)}
-                  >
+                    onClick={() => handleDeleteBand(band.id)}>
                     <MdDelete />
                   </div>
                 </div>
@@ -106,7 +99,4 @@ export const AllBands = ({ loggedInUser }) => {
       )}
     </div>
   );
-
-
-
-}
+};
