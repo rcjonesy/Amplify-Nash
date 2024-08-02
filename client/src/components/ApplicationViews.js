@@ -57,6 +57,7 @@ export default function ApplicationViews({
             <BookConcert
               concerts={concerts}
               handleGetConcerts={handleGetConcerts}
+              bands={bands}
             />
           </AuthorizedRoute>
         }

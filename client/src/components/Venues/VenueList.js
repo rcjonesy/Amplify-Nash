@@ -13,7 +13,7 @@ export const VenueList = ({ venues, handleVenues }) => {
     if (handleVenues) {
       handleVenues();
     }
-  }, [handleVenues]);
+  }, []);
  
   useEffect(() => {
     const foundVenues = venues.filter((venue) =>

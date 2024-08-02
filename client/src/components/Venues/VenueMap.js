@@ -76,9 +76,7 @@ export const VenueMap = ({ isOpen, toggle, venue }) => {
             {center && <Marker position={center} />}
           </GoogleMap>
         </ModalBody>
-        {/* <ModalFooter> */}
-
-        {/* </ModalFooter> */}
+       
       </Modal>
     </div>
   );
