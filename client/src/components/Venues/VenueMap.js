@@ -12,7 +12,7 @@ export const VenueMap = ({ isOpen, toggle, venue }) => {
   //tracking the loading state of the Google Maps API.
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAUMvI4uF4jefMqmUDfUyT5BmN_qkrg5hs",
+    googleMapsApiKey: "",
   });
 
   const mapStyles = {
