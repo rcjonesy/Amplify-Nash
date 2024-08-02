@@ -6,8 +6,13 @@ export const VenueMap = ({ isOpen, toggle, venue }) => {
   const [modal, setModal] = useState(isOpen);
   const [center, setCenter] = useState(null);
 
+  //useLoadScript hook is used to load the Google Maps API.
+  // expects an object with configuration options, such as the googleMapsApiKey
+  //destructuring the isLoaded and loadError variables from the result of calling useLoadScript.
+  //tracking the loading state of the Google Maps API.
+
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyC40LSG_eBPlG_7VWYDfHKJbRAGLSXd8G4",
+    googleMapsApiKey: "AIzaSyAUMvI4uF4jefMqmUDfUyT5BmN_qkrg5hs",
   });
 
   const mapStyles = {
@@ -20,26 +25,28 @@ export const VenueMap = ({ isOpen, toggle, venue }) => {
     toggle();
   };
 
-  const handleGeo = () => {
-    if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
-      return;
-    }
-
-    const geocoder = new window.google.maps.Geocoder();
-
-    geocoder.geocode({ address: venue.address }, (results, status) => {
-      if (status === "OK" && results.length > 0) {
-        const { lat, lng } = results[0].geometry.location;
-        setCenter({ lat: lat(), lng: lng() });
-      }
-    });
-  };
-
   useEffect(() => {
     if (isLoaded) {
       handleGeo();
     }
   }, [isLoaded, venue.address]);
+
+  //handle geocoding based on the venue's address.
+  const handleGeo = () => {
+    if (!window.google || !window.google.maps || !window.google.maps.Geocoder) {
+      return;
+    }
+    //instance of maps.geooder
+    const geocoder = new window.google.maps.Geocoder();
+
+    geocoder.geocode({ address: venue.address }, (results, status) => {
+      if (status === "OK" && results.length > 0) {
+        //extracts the latitude and longitude coordinates from the first result and sets the center state accordingly
+        const { lat, lng } = results[0].geometry.location;
+        setCenter({ lat: lat(), lng: lng() });
+      }
+    });
+  };
 
   if (loadError) {
     return <div>Error loading Google Maps: {loadError}</div>;

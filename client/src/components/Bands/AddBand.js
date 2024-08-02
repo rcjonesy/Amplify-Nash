@@ -72,11 +72,15 @@ export const AddBand = () => {
     });
   };
 
-  const addMember = () => {
+
+  //adds blank member to the state and rendermemberfields renders it to the page
+  const addBlankMember = () => {
     setNewBand({
       ...newBand,
+  // new array is created using the spread operator
       bandMembers: [
         ...newBand.bandMembers,
+  // new object representing an empty band member is appended to the copied array
         {
           name: "",
           instrument: "",
@@ -96,9 +100,9 @@ export const AddBand = () => {
   const handleCancel = (event) => {
     navigate("/bands");
   };
-
+//based on current state of band members
+//initial render generate empty band member fields
   const renderMemberFields = () => {
-
     return newBand.bandMembers.map((member, index) => (
       <div key={index} className="flex">
         <div className="flex-grow">
@@ -181,7 +185,8 @@ export const AddBand = () => {
           <button
             type="button"
             className="bg-gray-500 hover:bg-blue-700 text-white py-1 px-1 rounded mb-4 mt-3"
-            onClick={addMember}>
+            // {rendering new fiels}
+            onClick={addBlankMember}>
             Add Member
           </button>
 

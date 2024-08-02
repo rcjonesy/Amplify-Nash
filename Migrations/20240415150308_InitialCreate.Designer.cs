@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AmplifyNash.Migrations
 {
     [DbContext(typeof(AmplifyNashDbContext))]
-    [Migration("20240131193429_InitialCreate")]
+    [Migration("20240415150308_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -824,19 +824,15 @@ namespace AmplifyNash.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("IdentityUserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -1010,7 +1006,7 @@ namespace AmplifyNash.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "3892436b-adc6-490d-b6ed-ae214ebe1ac6",
+                            ConcurrencyStamp = "90b011d3-7a6d-4377-b9ed-9e93238f0f41",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -1109,13 +1105,13 @@ namespace AmplifyNash.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c39e071f-206d-41a9-81d7-f7e4d308d32e",
+                            ConcurrencyStamp = "3dde86ae-c6a9-4c70-95a3-720442f9051c",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEFvXCQKa/nI5Ve9TKIXCQVffvpu2QvJox44c2zkq07iUhYbOxTjjF4AkMMCvwkiMRQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFviZy1uBrTg3Bk3bEGzcA7C/xlwbazhrPuGfNAiPbE6tME7aDnZ+U0AdtmgAdWSRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "64751409-ee35-4fd2-a7c0-d288db17f366",
+                            SecurityStamp = "34043076-f46a-4da4-a18c-803fce37cef3",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -1287,9 +1283,7 @@ namespace AmplifyNash.Migrations
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
-                        .HasForeignKey("IdentityUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdentityUserId");
 
                     b.Navigation("IdentityUser");
                 });

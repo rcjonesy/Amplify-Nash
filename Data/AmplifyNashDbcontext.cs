@@ -18,6 +18,8 @@ public class AmplifyNashDbContext : IdentityDbContext<IdentityUser>
     public DbSet<LikedBand> LikedBands { get; set; }
     public DbSet<ConcertInterest> ConcertInterests { get; set; }
 
+    //constructor, takes 2 parameters, configures the DBcontext options (connection string etc...)
+    //encapsulation because it can only be accessed in the method itself
     public AmplifyNashDbContext(DbContextOptions<AmplifyNashDbContext> context, IConfiguration config) : base(context)
     {
         _configuration = config;

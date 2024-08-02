@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody } from "reactstrap";
 import { newVenue } from "../../managers/VenueManager";
 import PropTypes from "prop-types";
 
 export const AddVenue = ({ handleVenues }) => {
   const [venue, setVenue] = useState({});
   const [modal, setModal] = useState(false);
+ 
+
 
   const toggle = () => setModal(!modal);
 

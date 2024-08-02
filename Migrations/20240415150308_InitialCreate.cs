@@ -161,10 +161,10 @@ namespace AmplifyNash.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    IdentityUserId = table.Column<string>(type: "text", nullable: false)
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    IdentityUserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,8 +173,7 @@ namespace AmplifyNash.Migrations
                         name: "FK_UserProfiles_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -344,12 +343,12 @@ namespace AmplifyNash.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "3892436b-adc6-490d-b6ed-ae214ebe1ac6", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "90b011d3-7a6d-4377-b9ed-9e93238f0f41", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "c39e071f-206d-41a9-81d7-f7e4d308d32e", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFvXCQKa/nI5Ve9TKIXCQVffvpu2QvJox44c2zkq07iUhYbOxTjjF4AkMMCvwkiMRQ==", null, false, "64751409-ee35-4fd2-a7c0-d288db17f366", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "3dde86ae-c6a9-4c70-95a3-720442f9051c", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFviZy1uBrTg3Bk3bEGzcA7C/xlwbazhrPuGfNAiPbE6tME7aDnZ+U0AdtmgAdWSRg==", null, false, "34043076-f46a-4da4-a18c-803fce37cef3", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -10,14 +10,27 @@ import { AllBands } from "./Bands/AllBands";
 import { AddBand } from "./Bands/AddBand";
 import { BigMap } from "./Venues/Map";
 
-export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
+export default function ApplicationViews({
+  loggedInUser,
+  setLoggedInUser,
+  concerts,
+  venues,
+  handleVenues,
+  handleGetConcerts,
+  getBands,
+  bands
+}) {
   return (
     <Routes>
       <Route
         path="/"
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
-            <Home loggedInUser={loggedInUser} />
+            <Home
+              loggedInUser={loggedInUser}
+              concerts={concerts}
+              handleGetConcerts={handleGetConcerts}
+            />
           </AuthorizedRoute>
         }
       />
@@ -25,7 +38,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         path="concert/:id"
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
-            <ConcertUpdate />
+            <ConcertUpdate handleGetConcerts={handleGetConcerts} />
           </AuthorizedRoute>
         }
       />
@@ -33,7 +46,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         path="/venues"
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
-            <VenueList />
+            <VenueList venues={venues} handleVenues={handleVenues} />
           </AuthorizedRoute>
         }
       />
@@ -41,7 +54,10 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         path="/newconcert"
         element={
           <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
-            <BookConcert />
+            <BookConcert
+              concerts={concerts}
+              handleGetConcerts={handleGetConcerts}
+            />
           </AuthorizedRoute>
         }
       />
@@ -49,7 +65,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         path="/bands/*"
         element={
           <AuthorizedRoute loggedInUser={loggedInUser}>
-            <AllBands />
+            <AllBands getBands={getBands} bands={bands} />
           </AuthorizedRoute>
         }
       />

@@ -10,11 +10,12 @@ export const BandDetails = ({ bandObj }) => {
   const handleGetIncomingBand = (bandObj) => {
     getBandById(bandObj.id).then(setBand);
   };
-  const handleDeleteBand = () => {
-    band && console.log(band.Id);
-    // deleteBand(bandObj.Id)
-  };
 
+  // const handleDeleteBand = () => {
+  //   band && console.log(band.Id);
+  //   // deleteBand(bandObj.Id)
+  // };
+//changes stage of modal being opened or closed
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -23,13 +24,14 @@ export const BandDetails = ({ bandObj }) => {
     handleGetIncomingBand(bandObj);
   }, [bandObj]);
 
-  console.log(band);
+//isOpen expects a booloean and toggle expects a funtion (built in reactstrap props)
 
   return (
     <div>
       <div className="cursor-pointer text-2xl" onClick={toggleModal}>
         <FaEllipsisH />
       </div>
+      {}
       <Modal isOpen={modal} toggle={toggleModal} className="modal-lg">
         {/* <ModalHeader toggle={toggleModal} className="bg-slate-200">{band.name}</ModalHeader> */}
         <ModalBody className="relative bg-gradient-to-b from-slate-100 to-slate-300 rounded-lg transparent">
@@ -54,7 +56,7 @@ export const BandDetails = ({ bandObj }) => {
                   <span className="ml-2 text-xl font-bold">{band.genre}</span>
                 </p>
               </div>
-              {/* Bio */}
+              
               <div className="mb-3">
                 <p className="text-lg mb-2">
                   <span className="font-semibold text-xl text-blue-500">
@@ -63,7 +65,7 @@ export const BandDetails = ({ bandObj }) => {
                 </p>
                 <p className="text-lg text-gray-800">{band.bio}</p>
               </div>
-
+            
               {band.bandMembers && band.bandMembers.length > 0 ? (
                 <div className="mb-4">
                   <p className="text-lg mb-2">

@@ -5,8 +5,8 @@ import { getAllConcerts, deleteConcert } from "../../managers/ConcertManager";
 import { FcHighPriority } from "react-icons/fc";
 import { FcCheckmark } from "react-icons/fc";
 
-export const Home = ({ loggedInUser }) => {
-  const [concerts, setConcerts] = useState([]);
+export const Home = ({concerts, handleGetConcerts}) => {
+ 
   const [filteredConcerts, setFilteredConcerts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -40,13 +40,9 @@ export const Home = ({ loggedInUser }) => {
 
   //================================================================
 
-  const handleGetConcerts = () => {
-    getAllConcerts().then(setConcerts);
-  };
+ 
 
-  useEffect(() => {
-    handleGetConcerts();
-  }, []);
+
 
   const handleDeleteConcert = (concertId) => {
     deleteConcert(concertId).then(() => handleGetConcerts());
@@ -121,7 +117,7 @@ export const Home = ({ loggedInUser }) => {
                             {
                               bc.band.isHeadliner === false
                                 ? bc.band.name
-                                : null /* Do not render anything if the band is headliner */
+                                : null 
                             }
                           </li>
                         ))

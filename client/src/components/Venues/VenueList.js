@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import { getAllVenues, deleteVenue } from "../../managers/VenueManager";
+import { deleteVenue } from "../../managers/VenueManager";
 import { AddVenue } from "./AddVenue";
 import { VenueMap } from "./VenueMap";
 
-export const VenueList = () => {
-  const [venues, setVenues] = useState([]);
+export const VenueList = ({ venues, handleVenues }) => {
   const [selectedVenue, setSelectedVenue] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredVenues, setFilteredVenues] = useState([]);
 
-  const handleVenues = () => {
-    getAllVenues().then(setVenues);
-  };
-
   useEffect(() => {
-    handleVenues();
-  }, []);
-
+    if (handleVenues) {
+      handleVenues();
+    }
+  }, [handleVenues]);
+ 
   useEffect(() => {
     const foundVenues = venues.filter((venue) =>
       venue.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -65,6 +62,7 @@ export const VenueList = () => {
                 <th className="px-6 py-10 text-center text-xl">Capacity</th>
                 <th className="px-6 py-10 text-center text-xl">
                   <div className="w-full max-w-md">
+                    {/* {Add Venue button render} */}
                     <AddVenue handleVenues={handleVenues} />
                   </div>
                 </th>
@@ -122,6 +120,7 @@ export const VenueList = () => {
         <VenueMap
           venue={selectedVenue}
           isOpen={true}
+          // {passing in the handlclosemodal function to set the selectedvenue state to null to start over}
           toggle={handleCloseModal}
         />
       )}

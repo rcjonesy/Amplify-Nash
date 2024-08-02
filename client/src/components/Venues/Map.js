@@ -10,7 +10,7 @@ export const BigMap = () => {
 
   // loadscript handles the loading and initialization of the Google Maps API script
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyC40LSG_eBPlG_7VWYDfHKJbRAGLSXd8G4",
+    googleMapsApiKey: "AIzaSyAUMvI4uF4jefMqmUDfUyT5BmN_qkrg5hs",
   });
 
   const handleVenues = () => {
